@@ -12,7 +12,11 @@
     <style name="HubTheme.Light">
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
-        
+    </style>
+
+    <style name="HubTheme.ShapeTheme.FAB" parent="Widget.MaterialComponents.FloatingActionButton"/>
+    <style name="HubTheme.ShapeTheme.Button" parent="Widget.MaterialComponents.Button">
+        <item name="iconPadding">8dp</item>
     </style>
 
 </resources>
