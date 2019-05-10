@@ -29,7 +29,7 @@ class MainActivity : HubBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
+        binding.prefs = prefs
     }
 
     fun performLogin(v: View?) {
@@ -65,13 +65,13 @@ class MainActivity : HubBaseActivity() {
         }
     }
 
-    override fun onStart() {
+    /*override fun onStart() {
         super.onStart()
         if (auth.currentUser != null && !prefs.isLoggedIn) {
             val account = GoogleSignIn.getLastSignedInAccount(this)
             if (account != null) firebaseAuthWithGoogle(account)
         }
-    }
+    }*/
 
     private fun firebaseAuthWithGoogle(account: GoogleSignInAccount?) {
         if (account == null) {

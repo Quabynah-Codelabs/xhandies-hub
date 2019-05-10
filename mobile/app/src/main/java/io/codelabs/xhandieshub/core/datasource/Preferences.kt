@@ -26,6 +26,12 @@ class Preferences private constructor(context: Context) {
             }
         }
 
+    init {
+        uid = prefs.getString(Constants.Prefs.UID, null)
+        isLoggedIn = !uid.isNullOrEmpty()
+        if (isLoggedIn) uid = prefs.getString(Constants.Prefs.UID, null)
+    }
+
     companion object {
         @Volatile
         private var instance: Preferences? = null

@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable name="prefs" type="io.codelabs.xhandieshub.core.datasource.Preferences"/>
     </data>
 
     <io.codelabs.widget.ForegroundLinearLayout
@@ -26,14 +26,21 @@
         <io.codelabs.widget.BaselineGridTextView android:layout_width="wrap_content"
                                                  android:layout_height="wrap_content"
                                                  android:text="@string/default_app_name"
-                                                 android:padding="@dimen/padding_normal"
+                                                 android:paddingTop="@dimen/padding_normal"
                                                  android:textAppearance="@style/HubTheme.TextAppearance.Large"/>
+
+        <!-- Title -->
+        <io.codelabs.widget.BaselineGridTextView android:layout_width="wrap_content"
+                                                 android:layout_height="wrap_content"
+                                                 android:text="@string/app_desc"
+                                                 android:layout_marginBottom="@dimen/spacing_large"
+                                                 android:textAppearance="@style/HubTheme.TextAppearance.Small"/>
 
         <!-- Login Button-->
         <com.google.android.material.button.MaterialButton
                 style="@style/HubTheme.ShapeTheme.Button"
-                android:text="@string/sign_in_with_google"
-                app:icon="@drawable/googleg_standard_color_18"
+                android:text="@{prefs.loggedIn ? @string/logged_in : @string/sign_in_with_google, default=@string/sign_in_with_google}"
+                app:icon="@{prefs.loggedIn ? @drawable/twotone_shopping_basket_24px : @drawable/googleg_standard_color_18, default=@drawable/googleg_standard_color_18}"
                 android:id="@+id/login_button"
                 android:onClick="performLogin"/>
 

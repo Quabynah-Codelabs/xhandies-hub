@@ -2,5 +2,7 @@
     <string name="default_app_name">Xhandie\'s Hub</string>
     <string name="github_repo">https://github.com/Quabynah-Codelabs/xhandies-hub</string>
     <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="logged_in">Continue Shopping</string>
     <string name="default_notification_channel_id">hub_default_notification_channel_id</string>
+    <string name="app_desc">Get the best foods from around the globe…</string>
 </resources>

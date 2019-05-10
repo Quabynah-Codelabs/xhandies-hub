@@ -2,9 +2,12 @@
   <dictionary name="Codelabs">
     <words>
       <w>afollestad</w>
+      <w>codelabs</w>
+      <w>datasource</w>
       <w>firebase</w>
       <w>firestore</w>
       <w>xhandie</w>
+      <w>xhandieshub</w>
     </words>
   </dictionary>
 </component>
