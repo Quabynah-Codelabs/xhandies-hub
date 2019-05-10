@@ -8,6 +8,9 @@ import io.codelabs.xhandieshub.BuildConfig
 import io.codelabs.xhandieshub.core.util.Constants
 import io.codelabs.xhandieshub.data.User
 
+/**
+ * [Room] database implementation
+ */
 @Database(entities = [User::class], version = BuildConfig.VERSION_CODE, exportSchema = true)
 abstract class HubRoomDatabase : RoomDatabase() {
 

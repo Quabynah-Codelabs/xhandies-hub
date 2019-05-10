@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import io.codelabs.xhandieshub.data.User
 
+/**
+ * [Room] data access object
+ */
 @Dao
 interface HubRoomDao {
 

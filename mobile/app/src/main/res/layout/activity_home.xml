@@ -11,4 +11,5 @@
             tools:context=".view.HomeActivity">
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </layout>

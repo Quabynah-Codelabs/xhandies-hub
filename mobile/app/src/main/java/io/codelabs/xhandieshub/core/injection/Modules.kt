@@ -23,11 +23,20 @@ val firebaseModule = module {
     single { FirebaseStorage.getInstance().reference }
 }
 
+/**
+ * Shared Preferences initialization
+ */
 val sharedPrefsModule = module {
+
     single { Preferences.get(androidContext()) }
+
 }
 
+/**
+ * Room database initialization
+ */
 val roomModule = module {
 
     single { HubRoomDatabase.getInstance(androidContext()).dao() }
+
 }
