@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "130655708558",
+    "firebase_url": "https://xhandieshub.firebaseio.com",
+    "project_id": "xhandieshub",
+    "storage_bucket": "xhandieshub.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130655708558:android:0d24bd55f984d56d",
+        "android_client_info": {
+          "package_name": "io.codelabs.xhandieshub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130655708558-v197evr9fmqukft6el7ht5htn4lojdct.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.codelabs.xhandieshub",
+            "certificate_hash": "c11d545f2fb712fb89c3b8dfbc05873bb8658d8d"
+          }
+        },
+        {
+          "client_id": "130655708558-nccjnl2n77hpvms459d3p4jn26kfgpd8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATvs0MxR7TwkXZFh-Ne2eb1rpf4yJz2ho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130655708558-nccjnl2n77hpvms459d3p4jn26kfgpd8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
