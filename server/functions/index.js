@@ -11,6 +11,7 @@ exports.storeUser = functions.auth.user().onCreate((record, context) => {
     var email = record.email;
     var key = record.uid;
     var timestamp = context.timestamp;
+    var token = null;
 
     // Store user's information in the database
     return admin.firestore().collection('customers').doc(key)
@@ -18,7 +19,8 @@ exports.storeUser = functions.auth.user().onCreate((record, context) => {
             email,
             username,
             key,
-            timestamp
+            timestamp, 
+            token
         }).then(() => {
             return console.log('new customer information was stored in the database successfully');
         }).catch(error => {
@@ -29,7 +31,7 @@ exports.storeUser = functions.auth.user().onCreate((record, context) => {
 });
 
 // Send notification to new users
-exports.welcomeNewUser = functions.firestore.document('customers/{uid}').onWrite((snapshot, ctx) => {
+exports.welcomeUser = functions.firestore.document('customers/{uid}').onWrite((snapshot, ctx) => {
     // Get the snapshot data
     if (snapshot.before.exists) {
         var oldToken = snapshot.before.data().token;

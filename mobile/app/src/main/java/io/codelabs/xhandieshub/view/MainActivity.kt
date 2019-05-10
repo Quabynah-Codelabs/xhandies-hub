@@ -59,6 +59,7 @@ class MainActivity : HubBaseActivity() {
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 debugLog("Google sign in failed.\n" + e.localizedMessage)
+                toast("Google sign in failed.\n. ${e.localizedMessage}", true)
                 toggleButton(true)
             }
         }
