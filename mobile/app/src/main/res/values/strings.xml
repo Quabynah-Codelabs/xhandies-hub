@@ -13,4 +13,5 @@
     <string name="history">Shopping History</string>
     <string name="orders">Orders</string>
     <string name="added_to_cart">Remove from cart</string>
+    <string name="product_details">Product details</string>
 </resources>

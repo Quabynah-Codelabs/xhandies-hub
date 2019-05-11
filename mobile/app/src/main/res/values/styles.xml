@@ -32,6 +32,10 @@
         <item name="android:fontFamily">@font/dosis_semibold</item>
     </style>
 
+    <style name="HubTheme.TextAppearance.Large.Toolbar">
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <style name="HubTheme.TextAppearance.Small" parent="TextAppearance.DribbbleShotDescription">
         <item name="android:fontFamily">@font/dosis_medium</item>
     </style>

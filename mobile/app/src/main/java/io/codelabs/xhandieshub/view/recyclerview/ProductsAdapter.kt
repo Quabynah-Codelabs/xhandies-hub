@@ -75,11 +75,13 @@ class ProductsAdapter constructor(
 
         holder.v.product_name.text = product.name
         holder.v.add_product.setOnClickListener { view ->
-            if ((view as MaterialButton).icon == context.getDrawable(R.drawable.twotone_remove_shopping_cart_24px) && cartKey.isNotEmpty()) {
+            if (/*(view as MaterialButton).icon == context.getDrawable(R.drawable.twotone_remove_shopping_cart_24px) && */cartKey.isNotEmpty()) {
+                view as MaterialButton
                 view.text = context.getString(R.string.add_to_cart)
                 view.icon = context.getDrawable(R.drawable.twotone_add_shopping_cart_24px)
 
-                val document = firestore.collection(String.format(Constants.Database.CART, prefs.uid)).document(cartKey)
+                val document = firestore.collection(String.format(Constants.Database.CART, prefs.uid)).document(product.key)
+                cartKey = ""
                 document.delete()
                     .addOnCompleteListener {
                         debugLog("Removing item from cart: ${it.isSuccessful}")
@@ -90,11 +92,13 @@ class ProductsAdapter constructor(
                         context.toast("Failed to remove \"${product.name}\" from your shopping cart", true)
                     }
             } else {
+                view as MaterialButton
                 view.text = context.getString(R.string.added_to_cart)
                 view.icon = context.getDrawable(R.drawable.twotone_remove_shopping_cart_24px)
-                val document = firestore.collection(String.format(Constants.Database.CART, prefs.uid)).document()
-                cartKey = document.id
-                document.set(Cart(document.id, product.key))
+                val document = firestore.collection(String.format(Constants.Database.CART, prefs.uid)).document(product.key)
+                cartKey = product.key
+
+                document.set(Cart(product.key, product.key))
                     .addOnCompleteListener {
                         debugLog("Adding item to cart: ${it.isSuccessful}")
                     }.addOnFailureListener { ex ->

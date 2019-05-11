@@ -1,5 +1,9 @@
 package io.codelabs.xhandieshub.data
 
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import io.codelabs.sdk.glide.GlideApp
+import io.codelabs.xhandieshub.R
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -21,5 +25,17 @@ data class Product(
     object Category {
         const val BEVERAGE = "beverage"
         const val FOOD = "food"
+    }
+
+    companion object {
+        @JvmStatic
+        @BindingAdapter("imageUrl")
+        fun loadImage(imageView: ImageView, imageUrl: String) {
+            GlideApp.with(imageView.context)
+                .load(imageUrl)
+                .placeholder(R.color.content_placeholder)
+                .error(R.color.content_placeholder)
+                .into(imageView)
+        }
     }
 }

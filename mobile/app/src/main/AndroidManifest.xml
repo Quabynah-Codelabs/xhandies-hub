@@ -43,6 +43,7 @@
                   android:label="@string/empty"
                   android:configChanges="screenSize|screenLayout|orientation"/>
         <activity android:name=".view.ProductActivity"
+                  android:screenOrientation="portrait"
                   android:label="@string/empty"
                   android:configChanges="screenSize|screenLayout|orientation"/>
 
