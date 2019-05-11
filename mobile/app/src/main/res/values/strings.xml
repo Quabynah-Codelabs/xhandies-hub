@@ -12,4 +12,5 @@
     <string name="logout">Logout</string>
     <string name="history">Shopping History</string>
     <string name="orders">Orders</string>
+    <string name="added_to_cart">Remove from cart</string>
 </resources>

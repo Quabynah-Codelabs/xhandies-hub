@@ -64,9 +64,10 @@ class HubNotificationService : FirebaseMessagingService() {
 
     override fun onMessageReceived(p0: RemoteMessage?) {
         if (p0 != null) {
+            createNotificationChannel()
+
             val notificationData = p0.data
             debugLog(notificationData)
-            createNotificationChannel()
 
             // Send push notification
             pushNotification(

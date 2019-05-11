@@ -14,11 +14,11 @@ import com.google.android.gms.tasks.Tasks
 import com.google.android.material.snackbar.Snackbar
 import io.codelabs.recyclerview.GridItemDividerDecoration
 import io.codelabs.recyclerview.SlideInItemAnimator
+import io.codelabs.sdk.util.debugLog
 import io.codelabs.sdk.util.intentTo
 import io.codelabs.sdk.util.toast
 import io.codelabs.xhandieshub.R
 import io.codelabs.xhandieshub.core.HubBaseActivity
-import io.codelabs.xhandieshub.core.datasource.remote.FakeDataSource
 import io.codelabs.xhandieshub.core.util.Constants
 import io.codelabs.xhandieshub.data.Product
 import io.codelabs.xhandieshub.databinding.ActivityHomeBinding
@@ -41,10 +41,18 @@ class HomeActivity : HubBaseActivity(), OnItemClickListener<Product> {
         binding.productsGrid.setHasFixedSize(true)
         binding.productsGrid.itemAnimator = SlideInItemAnimator()
         binding.productsGrid.addItemDecoration(GridItemDividerDecoration(this, R.dimen.divider_height, R.color.divider))
-        binding.productsGrid.adapter = ProductsAdapter(this, this).apply {
-            //            debugLog(fetchProducts())
-//            addProducts(fetchProducts())
-            addProducts(FakeDataSource.getFakeProducts())
+        binding.productsGrid.adapter = ProductsAdapter(this, this, firestore, prefs).apply {
+            ioScope.launch {
+                try {
+                    val products = fetchProducts()
+
+                    uiScope.launch {
+                        addProducts(products)
+                    }
+                } catch (e: Exception) {
+                    debugLog(e.localizedMessage)
+                }
+            }
         }
     }
 
@@ -74,24 +82,29 @@ class HomeActivity : HubBaseActivity(), OnItemClickListener<Product> {
                 Snackbar.make(binding.container, "Confirm logout?", Snackbar.LENGTH_LONG).apply {
                     setAction(getString(R.string.logout)) {
                         dao.getCurrentUser(prefs.uid!!).observe(this@HomeActivity, Observer {
-                            ioScope.launch {
-                                dao.deleteUser(it)
-                                prefs.uid = null
+                            if (it != null) {
+                                ioScope.launch {
+                                    dao.deleteUser(it)
+                                    prefs.uid = null
 
-                                uiScope.launch {
-                                    intentTo(MainActivity::class.java, true)
+                                    uiScope.launch {
+                                        intentTo(MainActivity::class.java, true)
+                                    }
                                 }
-                            }
+                            } else toast("you are not logged in properly")
                         })
                     }
                     show()
                 }
             }
             R.id.menu_orders -> {
+                //todo
             }
             R.id.menu_recents -> {
+                //todo
             }
             R.id.menu_search -> {
+                //todo
             }
         }
         return super.onOptionsItemSelected(item)
