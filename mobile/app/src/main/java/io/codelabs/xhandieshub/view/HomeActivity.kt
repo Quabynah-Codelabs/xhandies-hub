@@ -7,9 +7,11 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.Tasks
+import com.google.android.material.snackbar.Snackbar
 import io.codelabs.recyclerview.GridItemDividerDecoration
 import io.codelabs.recyclerview.SlideInItemAnimator
 import io.codelabs.sdk.util.intentTo
@@ -22,6 +24,7 @@ import io.codelabs.xhandieshub.data.Product
 import io.codelabs.xhandieshub.databinding.ActivityHomeBinding
 import io.codelabs.xhandieshub.view.recyclerview.OnItemClickListener
 import io.codelabs.xhandieshub.view.recyclerview.ProductsAdapter
+import kotlinx.coroutines.launch
 
 class HomeActivity : HubBaseActivity(), OnItemClickListener<Product> {
 
@@ -51,6 +54,10 @@ class HomeActivity : HubBaseActivity(), OnItemClickListener<Product> {
     fun showCart(v: View?) = intentTo(CartActivity::class.java)
 
     override fun onClick(item: Product, isLong: Boolean) {
+        if (isLong) {
+            return
+        }
+
         toast(item)
     }
 
@@ -63,7 +70,29 @@ class HomeActivity : HubBaseActivity(), OnItemClickListener<Product> {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
+            R.id.menu_logout -> {
+                Snackbar.make(binding.container, "Confirm logout?", Snackbar.LENGTH_LONG).apply {
+                    setAction(getString(R.string.logout)) {
+                        dao.getCurrentUser(prefs.uid!!).observe(this@HomeActivity, Observer {
+                            ioScope.launch {
+                                dao.deleteUser(it)
+                                prefs.uid = null
 
+                                uiScope.launch {
+                                    intentTo(MainActivity::class.java, true)
+                                }
+                            }
+                        })
+                    }
+                    show()
+                }
+            }
+            R.id.menu_orders -> {
+            }
+            R.id.menu_recents -> {
+            }
+            R.id.menu_search -> {
+            }
         }
         return super.onOptionsItemSelected(item)
     }

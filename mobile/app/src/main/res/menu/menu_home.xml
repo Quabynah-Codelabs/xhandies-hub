@@ -2,13 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:title="@string/logout"
-          android:icon="@drawable/ic_search_24dp"
+          android:icon="@drawable/ic_search"
           android:id="@+id/menu_search"
-          app:showAsAction="always"/>
+          app:showAsAction="ifRoom"/>
+
+    <item android:title="@string/orders"
+          android:icon="@drawable/twotone_shopping_basket_24px"
+          android:id="@+id/menu_orders"
+          app:showAsAction="never"/>
+
+    <item android:title="@string/history"
+          android:icon="@drawable/twotone_history_24px"
+          android:id="@+id/menu_recents"
+          app:showAsAction="never"/>
 
     <item android:title="@string/logout"
           android:icon="@drawable/twotone_perm_identity_24px"
           android:id="@+id/menu_logout"
-          app:showAsAction="ifRoom"/>
+          app:showAsAction="never"/>
 
 </menu>

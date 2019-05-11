@@ -18,6 +18,7 @@
                                                 app:layout_constraintEnd_toEndOf="parent"
                                                 android:id="@+id/product_image"
                                                 android:scaleType="centerCrop"
+                                                android:padding="@dimen/spacing_normal"
                                                 tools:src="@color/content_placeholder"/>
 
         <!-- Name -->
@@ -50,10 +51,8 @@
                                                            style="@style/HubTheme.ShapeTheme.Button.Text"
                                                            android:text="@string/add_to_cart"
                                                            android:id="@+id/add_product"
-                                                           app:layout_constraintEnd_toStartOf="@id/product_price"
-                                                           android:paddingStart="@dimen/spacing_normal"
-                                                           android:paddingEnd="@dimen/padding_large"
-                                                           android:paddingBottom="@dimen/padding_normal"
+                                                           app:layout_constraintBottom_toBottomOf="parent"
+                                                           app:layout_constraintStart_toStartOf="parent"
                                                            android:layout_marginTop="@dimen/spacing_micro"
                                                            app:layout_constraintTop_toBottomOf="@id/product_desc"
                                                            app:icon="@drawable/twotone_add_shopping_cart_24px"/>
@@ -66,10 +65,10 @@
                                                  android:maxLines="1"
                                                  android:ellipsize="end"
                                                  app:layout_constraintEnd_toEndOf="parent"
+                                                 app:layout_constraintBottom_toBottomOf="@id/add_product"
                                                  android:paddingStart="@dimen/spacing_normal"
                                                  android:paddingEnd="@dimen/padding_large"
-                                                 android:paddingBottom="@dimen/padding_normal"
-                                                 android:layout_marginTop="@dimen/spacing_micro"
+                                                 app:layout_constraintTop_toTopOf="@id/add_product"
                                                  app:layout_constraintTop_toBottomOf="@id/product_desc"
                                                  android:gravity="center_vertical|end"
                                                  android:textAppearance="@style/HubTheme.TextAppearance.Price"

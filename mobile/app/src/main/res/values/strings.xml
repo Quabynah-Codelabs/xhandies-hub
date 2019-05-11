@@ -10,4 +10,6 @@
     <string name="not_found_title">Oops…</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="logout">Logout</string>
+    <string name="history">Shopping History</string>
+    <string name="orders">Orders</string>
 </resources>
