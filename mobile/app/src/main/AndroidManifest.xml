@@ -36,6 +36,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.HomeActivity"
+                  android:label="@string/empty"
+                  android:configChanges="screenSize|screenLayout|orientation"/>
+
+        <activity android:name=".view.CartActivity"
+                  android:label="@string/empty"
                   android:configChanges="screenSize|screenLayout|orientation"/>
 
         <service android:name=".core.notification.HubNotificationService"

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+    </data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/container"
+            tools:context=".view.CartActivity">
+
+        <com.google.android.material.appbar.AppBarLayout android:layout_width="match_parent"
+                                                         android:layout_height="@dimen/nav_header_height"
+                                                         android:background="?colorPrimary"
+                                                         android:id="@+id/app_bar">
+
+            <androidx.appcompat.widget.Toolbar android:layout_width="match_parent"
+                                               android:layout_height="?attr/actionBarSize"
+                                               android:id="@+id/toolbar"
+                                               app:title="@string/empty"
+                                               app:navigationIcon="@drawable/ic_arrow_back_padded"/>
+
+            <io.codelabs.widget.BaselineGridTextView android:layout_width="match_parent"
+                                                     android:layout_height="match_parent"
+                                                     android:gravity="center"
+                                                     android:paddingBottom="?attr/actionBarSize"
+                                                     android:text="@string/my_shopping_cart"
+                                                     android:textAppearance="@style/HubTheme.TextAppearance.Large"
+                                                     android:textColor="@color/text_primary_light"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

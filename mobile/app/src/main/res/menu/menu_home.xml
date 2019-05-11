@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="@string/logout"
+          android:icon="@drawable/ic_search_24dp"
+          android:id="@+id/menu_search"
+          app:showAsAction="always"/>
+
+    <item android:title="@string/logout"
+          android:icon="@drawable/twotone_perm_identity_24px"
+          android:id="@+id/menu_logout"
+          app:showAsAction="ifRoom"/>
+
+</menu>

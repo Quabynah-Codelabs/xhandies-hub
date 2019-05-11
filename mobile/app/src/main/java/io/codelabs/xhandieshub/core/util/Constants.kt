@@ -15,6 +15,7 @@ object Constants {
      */
     object Database {
         const val CUSTOMERS = "customers"
+        const val PRODUCTS = "products"
     }
 
     /**
@@ -22,7 +23,7 @@ object Constants {
      */
     object Notification {
         const val TOKEN_UPDATE = "new-user-token-update"
-        const val CHANNEL_ID = "CHANNEL_ID"
+        const val CHANNEL_ID = "HUB_CHANNEL_ID"
         const val NOTIFICATION_ICON = R.drawable.shr_logo
         val NOTIFICATION_ID = Random(3).nextInt()
         const val RC_NOTIFICATION = 1
