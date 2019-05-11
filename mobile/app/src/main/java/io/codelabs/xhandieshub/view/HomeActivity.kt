@@ -19,6 +19,7 @@ import io.codelabs.sdk.util.intentTo
 import io.codelabs.sdk.util.toast
 import io.codelabs.xhandieshub.R
 import io.codelabs.xhandieshub.core.HubBaseActivity
+import io.codelabs.xhandieshub.core.datasource.remote.FakeDataSource
 import io.codelabs.xhandieshub.core.util.Constants
 import io.codelabs.xhandieshub.data.Product
 import io.codelabs.xhandieshub.databinding.ActivityHomeBinding
@@ -42,7 +43,7 @@ class HomeActivity : HubBaseActivity(), OnItemClickListener<Product> {
         binding.productsGrid.itemAnimator = SlideInItemAnimator()
         binding.productsGrid.addItemDecoration(GridItemDividerDecoration(this, R.dimen.divider_height, R.color.divider))
         binding.productsGrid.adapter = ProductsAdapter(this, this, firestore, prefs).apply {
-            ioScope.launch {
+            /*ioScope.launch {
                 try {
                     val products = fetchProducts()
 
@@ -52,7 +53,8 @@ class HomeActivity : HubBaseActivity(), OnItemClickListener<Product> {
                 } catch (e: Exception) {
                     debugLog(e.localizedMessage)
                 }
-            }
+            }*/
+            addProducts(FakeDataSource.getFakeProducts())
         }
     }
 
