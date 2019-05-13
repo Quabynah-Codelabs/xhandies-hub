@@ -37,6 +37,7 @@
                 <io.codelabs.widget.FourThreeImageView android:layout_width="match_parent"
                                                        android:layout_height="wrap_content"
                                                        app:imageUrl="@{product.image}"
+                                                       tools:src="@tools:sample/backgrounds/scenic"
                                                        android:layout_marginBottom="@dimen/spacing_normal"
                                                        android:scaleType="centerCrop"/>
 
