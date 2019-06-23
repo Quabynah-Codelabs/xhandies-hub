@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "130655708558-nq0vanr14uehfa5vpmnvdm3v6cmn5ctv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.codelabs.xhandieshub",
+            "certificate_hash": "c4734c6c578354429799c5d62fd99b60c57e65f7"
+          }
+        },
+        {
           "client_id": "130655708558-5ejp9mic2hup73649ok4aachlboapked.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
