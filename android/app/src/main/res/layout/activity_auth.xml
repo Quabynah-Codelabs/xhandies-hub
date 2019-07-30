@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<io.codelabs.widget.ForegroundLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_dialog"
+    tools:context=".view.AuthActivity">
+
+    <io.codelabs.widget.BaselineGridTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/padding_normal"
+        android:paddingEnd="@dimen/padding_normal"
+        android:text="@string/welcome_text"
+        android:textAlignment="center"
+        android:textAppearance="?textAppearanceHeadline5"
+        app:fontFamily="@font/exo_2" />
+
+    <io.codelabs.widget.BaselineGridTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_xlarge"
+        android:alpha="0.8"
+        android:paddingStart="@dimen/padding_normal"
+        android:paddingEnd="@dimen/padding_normal"
+        android:text="@string/welcome_desc"
+        android:textAlignment="center"
+        android:textAppearance="?textAppearanceSubtitle2"
+        app:fontFamily="@font/exo_2" />
+
+    <io.codelabs.widget.ForegroundImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_header_height"
+        android:layout_marginBottom="@dimen/spacing_xlarge"
+        android:src="@drawable/ic_undraw_successful_purchase_uyin" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email Address">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_normal"
+        android:hint="Password"
+        app:passwordToggleDrawable="@drawable/asl_password_visibility"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <io.codelabs.widget.ForegroundLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_normal"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_normal"
+            android:onClick="resetPassword"
+            android:text="Forgot password?"
+            android:textAllCaps="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_normal"
+            android:enabled="false"
+            android:id="@+id/login_button"
+            android:onClick="loginOrRegister"
+            android:text="Continue"
+            android:textAllCaps="false" />
+
+    </io.codelabs.widget.ForegroundLinearLayout>
+
+</io.codelabs.widget.ForegroundLinearLayout>

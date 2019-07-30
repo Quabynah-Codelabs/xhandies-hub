@@ -2,6 +2,16 @@ package io.codelabs.xhandieshub.core
 
 object Utils {
     /**
+     * Dummy Credit Card
+     */
+    const val DUMMY_CC = "1234-1234-1234"
+
+    /**
+     * Room database name
+     */
+    const val DATABASE_NAME = "xhandies_room.db"
+
+    /**
      * Storage name for our SharedPreferences
      */
     const val APP_PREFS = "xhandies_prefs"

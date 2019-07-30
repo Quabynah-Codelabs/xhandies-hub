@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Input Field-->
+    <style name="XhandiesTheme.InputField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense" />
+
+</resources>

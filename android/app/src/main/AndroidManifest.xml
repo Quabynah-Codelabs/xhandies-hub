@@ -15,6 +15,7 @@
         android:theme="@style/XhandiesTheme">
         <activity
             android:name=".view.MainActivity"
+            android:configChanges="orientation|screenLayout|screenSize"
             android:theme="@style/XhandiesTheme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +26,15 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.HomeActivity"
+            android:configChanges="orientation|screenLayout|screenSize" />
+        <activity
+            android:name=".view.AuthActivity"
+            android:configChanges="orientation|screenLayout|screenSize" />
+        <activity
+            android:name=".view.PasswordRecoverActivity"
+            android:configChanges="orientation|screenLayout|screenSize" />
     </application>
 
 </manifest>

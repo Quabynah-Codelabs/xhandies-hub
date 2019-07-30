@@ -7,7 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">@color/transparent</item>
-        <item name="android:navigationBarColor">@color/transparent</item>
+<!--        <item name="android:navigationBarColor">@color/transparent</item>-->
+
+
+        <item name="textInputStyle">@style/XhandiesTheme.InputField</item>
     </style>
 
     <style name="XhandiesTheme.FullScreen">

@@ -2,15 +2,52 @@
 <io.codelabs.widget.ForegroundLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
-    android:padding="@dimen/padding_normal"
-    android:id="@+id/container"
+    android:paddingTop="@dimen/padding_normal"
+    android:paddingBottom="@dimen/padding_normal"
     tools:context=".view.MainActivity">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/about_peek_height_minus"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="5056-delivery-latest.json"
+        app:lottie_loop="true"
+        app:lottie_repeatMode="restart" />
 
+    <io.codelabs.widget.BaselineGridTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_dialog"
+        android:padding="@dimen/padding_normal"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textAppearance="?textAppearanceHeadline5"
+        app:fontFamily="@font/exo_2" />
 
+    <io.codelabs.widget.BaselineGridTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="0.8"
+        android:paddingStart="@dimen/padding_normal"
+        android:paddingEnd="@dimen/padding_normal"
+        android:text="@string/app_desc"
+        android:textAlignment="center"
+        android:textAppearance="?textAppearanceSubtitle2"
+        app:fontFamily="@font/exo_2" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_dialog"
+        android:onClick="getStarted"
+        android:text="@string/get_started"
+        android:textAllCaps="false" />
 
 
 </io.codelabs.widget.ForegroundLinearLayout>
