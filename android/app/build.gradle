@@ -109,5 +109,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:19.0.1'
     implementation 'com.google.firebase:firebase-storage:18.1.1'
 
+    // Lottie
+    def lottie = "3.0.7"
+    implementation "com.airbnb.android:lottie:${lottie}"
+
 }
 apply plugin: 'com.google.gms.google-services'
