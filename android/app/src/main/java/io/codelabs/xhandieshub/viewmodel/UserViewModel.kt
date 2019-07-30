@@ -16,4 +16,6 @@ class UserViewModel(private val app: Application, private val repository: UserRe
 
     fun loginOrRegister(email: String, password: String, callback: Callback<User?>) =
         repository.loginOrRegister(email, password, callback)
+
+    fun resetPassword(email: String, callback: Callback<String>) = repository.resetPassword(email, callback)
 }

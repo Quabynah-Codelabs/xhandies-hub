@@ -11,6 +11,7 @@
 
 
         <item name="textInputStyle">@style/XhandiesTheme.InputField</item>
+        <item name="android:fontFamily">@font/exo_2</item>
     </style>
 
     <style name="XhandiesTheme.FullScreen">

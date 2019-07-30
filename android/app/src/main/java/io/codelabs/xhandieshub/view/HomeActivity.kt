@@ -14,13 +14,14 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  */
 class HomeActivity : BaseActivity() {
 
-    private val viewModel by viewModel<UserViewModel>()
+    private val userViewModel by viewModel<UserViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        viewModel.currentUser.observe(this, Observer { user ->
+        // get live feedback about user's information
+        userViewModel.currentUser.observe(this, Observer { user ->
             debugger("Logged in user: $user")
         })
     }
