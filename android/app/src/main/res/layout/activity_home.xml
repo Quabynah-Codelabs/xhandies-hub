@@ -50,8 +50,8 @@
                     android:id="@+id/indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="@dimen/padding_dialog" />
+                    android:layout_gravity="center_horizontal|top"
+                    android:layout_marginTop="@dimen/padding_dialog" />
 
             </FrameLayout>
 
@@ -59,8 +59,6 @@
                 android:id="@+id/food_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
                 tools:itemCount="10"
                 tools:listitem="@layout/item_food" />
 

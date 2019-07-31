@@ -1,9 +1,12 @@
 package io.codelabs.xhandieshub.core
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
 import io.codelabs.sdk.util.debugLog
+import io.codelabs.xhandieshub.core.base.BaseActivity
 
 /**
  * For debugging
@@ -19,6 +22,12 @@ val Context.layoutInflater: LayoutInflater get() = LayoutInflater.from(this)
  * Checks if an email field matches the pattern required for authentication or not
  */
 fun String.matchesEmailPattern(): Boolean = Patterns.EMAIL_ADDRESS.matcher(this).matches()
+
+fun BaseActivity.intentTo(target: Class<out BaseActivity>, bundle: Bundle) {
+    startActivity(Intent(this, target).apply {
+        putExtras(bundle)
+    })
+}
 
 /**
  * Lambda Callback function

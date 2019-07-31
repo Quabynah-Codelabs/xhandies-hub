@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<io.codelabs.widget.ForegroundLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<io.codelabs.widget.ForegroundRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <io.codelabs.widget.ForegroundImageView
+        android:id="@+id/item_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="centerCrop"
         android:src="@color/content_placeholder" />
 
-</io.codelabs.widget.ForegroundLinearLayout>
+    <io.codelabs.widget.BaselineGridTextView
+        android:id="@+id/item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/mid_grey"
+        android:padding="@dimen/padding_normal"
+        android:textAlignment="center"
+        android:textAppearance="?textAppearanceHeadline6"
+        tools:text="@tools:sample/lorem" />
+
+</io.codelabs.widget.ForegroundRelativeLayout>
