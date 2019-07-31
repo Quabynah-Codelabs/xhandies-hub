@@ -2,6 +2,7 @@ package io.codelabs.xhandieshub.core.database
 
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Update
 
 /**
@@ -9,10 +10,10 @@ import androidx.room.Update
  */
 interface BaseDao<T> {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertItem(item: T)
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     fun updateItem(vararg items: T)
 
     @Delete

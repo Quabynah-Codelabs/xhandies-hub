@@ -119,6 +119,15 @@ class UserRepository(
         }
     }
 
+    fun updateUser(user: User?) {
+        ioScope.launch {
+            if (user == null) return@launch
+
+            // Store user locally
+            userDao.insertItem(user)
+        }
+    }
+
     companion object {
         @Volatile
         private var instance: UserRepository? = null

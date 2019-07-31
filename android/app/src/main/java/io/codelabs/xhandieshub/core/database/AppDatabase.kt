@@ -5,12 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import io.codelabs.xhandieshub.core.Utils
+import io.codelabs.xhandieshub.model.Food
 import io.codelabs.xhandieshub.model.User
 
-@Database(entities = [User::class], version = 1, exportSchema = true)
+@Database(entities = [User::class, Food::class], version = 4, exportSchema = true)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
+    abstract fun foodDao(): FoodDao
 
     companion object {
         @Volatile

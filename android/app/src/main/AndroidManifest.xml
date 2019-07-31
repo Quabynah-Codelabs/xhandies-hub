@@ -35,6 +35,9 @@
         <activity
             android:name=".view.PasswordRecoverActivity"
             android:configChanges="orientation|screenLayout|screenSize" />
+        <activity
+            android:name=".view.CartActivity"
+            android:configChanges="orientation|screenLayout|screenSize" />
     </application>
 
 </manifest>

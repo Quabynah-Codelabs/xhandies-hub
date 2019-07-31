@@ -5,6 +5,9 @@ import androidx.room.Dao
 import androidx.room.Query
 import io.codelabs.xhandieshub.model.User
 
+/**
+ * Data Access Object for [User] table
+ */
 @Dao
 interface UserDao : BaseDao<User> {
 

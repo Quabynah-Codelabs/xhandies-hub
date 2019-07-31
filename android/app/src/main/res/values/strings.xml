@@ -6,4 +6,8 @@
     <string name="welcome_desc">Login to start shopping for your favorite food items</string>
     <string name="password_recover_title">Recover your password</string>
     <string name="password_recover_desc">We will send you an email to reset your password</string>
+    <string name="close_drawer">close_drawer</string>
+    <string name="open_drawer">open_drawer</string>
+    <string name="cart">Cart</string>
+    <string name="logout">Logout</string>
 </resources>

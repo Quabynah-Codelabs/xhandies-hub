@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="food"
+            type="io.codelabs.xhandieshub.model.Food" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_micro"
+        android:layout_marginTop="@dimen/spacing_micro"
+        android:layout_marginEnd="@dimen/spacing_micro"
+        android:layout_marginBottom="@dimen/spacing_normal"
+        app:cardBackgroundColor="@color/background_card">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <io.codelabs.widget.FourThreeImageView
+                android:id="@+id/food_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@color/content_placeholder"
+                app:foodImage="@{food.imageUrl}"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <io.codelabs.widget.BaselineGridTextView
+                android:id="@+id/food_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:padding="@dimen/padding_normal"
+                android:text="@{food.name}"
+                android:textAppearance="?textAppearanceHeadline6"
+                app:layout_constraintTop_toBottomOf="@id/food_image"
+                tools:text="@tools:sample/lorem" />
+
+            <io.codelabs.widget.BaselineGridTextView
+                android:id="@+id/food_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/padding_normal"
+                android:paddingEnd="@dimen/zero_spacing"
+                android:paddingBottom="@dimen/spacing_normal"
+                android:text="@{food.category}"
+                android:textAppearance="?textAppearanceCaption"
+                app:layout_constraintTop_toBottomOf="@id/food_name"
+                tools:text="Continental Dish" />
+
+            <io.codelabs.widget.BaselineGridTextView
+                android:id="@+id/food_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:paddingStart="@dimen/padding_normal"
+                android:paddingEnd="@dimen/padding_room_for_fab"
+                android:paddingBottom="@dimen/padding_normal"
+                android:text="@{food.desc}"
+                android:textAppearance="?textAppearanceBody2"
+                app:layout_constraintTop_toBottomOf="@id/food_category"
+                tools:text="@tools:sample/lorem/random" />
+
+            <io.codelabs.widget.BaselineGridTextView
+                android:id="@+id/food_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.7"
+                android:fontFeatureSettings="onum,smcp"
+                android:paddingStart="@dimen/zero_spacing"
+                android:paddingEnd="@dimen/padding_normal"
+                android:paddingBottom="@dimen/padding_normal"
+                android:text="@{String.valueOf(food.price)}"
+                android:textAppearance="?textAppearanceSubtitle2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/food_desc"
+                tools:text="GHC 12.99" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

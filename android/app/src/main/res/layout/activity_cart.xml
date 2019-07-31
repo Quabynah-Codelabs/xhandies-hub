@@ -5,10 +5,10 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.HomeActivity">
+    tools:context=".view.CartActivity">
+
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -19,12 +19,12 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_collapseMode="pin"
-            app:menu="@menu/home_menu"
+            app:navigationIcon="@drawable/ic_close"
             app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
-            app:title="@string/app_name" />
+            app:title="Shopping Cart" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollable_content"
@@ -32,41 +32,15 @@
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
+
         <io.codelabs.widget.ForegroundLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/nav_header_height">
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/pager_items"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <io.codelabs.widget.InkPageIndicator
-                    android:id="@+id/indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="@dimen/padding_dialog" />
-
-            </FrameLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/food_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:itemCount="10"
-                tools:listitem="@layout/item_food" />
 
         </io.codelabs.widget.ForegroundLinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-

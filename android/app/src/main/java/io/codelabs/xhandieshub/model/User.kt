@@ -2,6 +2,7 @@ package io.codelabs.xhandieshub.model
 
 import android.os.Parcelable
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
@@ -16,6 +17,7 @@ data class User(
     var cashBalance: Long? = -1L
 ) : Parcelable {
 
+    @Ignore
     // No-Argument constructor needed for serialization from Firebase Firestore
     constructor() : this("", "")
 }

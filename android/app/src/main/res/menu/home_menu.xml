@@ -2,9 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="cart"
+    <item
         android:id="@+id/item_cart"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_cart"/>
+        android:icon="@drawable/ic_cart"
+        android:title="@string/cart"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/item_logout"
+        android:title="@string/logout"
+        app:showAsAction="never" />
 
 </menu>
