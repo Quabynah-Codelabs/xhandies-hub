@@ -10,6 +10,7 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions.withCross
 import com.bumptech.glide.request.target.Target
 import io.codelabs.sdk.glide.GlideApp
 import io.codelabs.xhandieshub.R
+import io.codelabs.xhandieshub.core.Utils
 import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "foods")
@@ -23,7 +24,7 @@ data class Food(
     var category: String = FoodCategory.CONTINENTAL,
     var price: Double = 1.00,
     var quantity: Int = 100,
-    var restaurant: String? = null
+    var restaurant: String? = Utils.DEFAULT_RESTAURANT
 ) : Model {
 
     @Ignore

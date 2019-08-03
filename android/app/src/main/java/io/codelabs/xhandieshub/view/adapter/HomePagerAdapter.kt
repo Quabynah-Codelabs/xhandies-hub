@@ -11,6 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import io.codelabs.sdk.glide.GlideApp
 import io.codelabs.xhandieshub.R
 import io.codelabs.xhandieshub.core.layoutInflater
+import io.codelabs.xhandieshub.model.Food
 
 /**
  * Adapter for the home page products view pager
@@ -24,6 +25,41 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
     var pageThree: View? = null
     @Nullable
     var pageFour: View? = null
+
+    private val chefsPick = mutableListOf<Food>().apply {
+        add(
+            Food(
+                "OfNxGeumsEYkkfKsfgzx",
+                "Samosa",
+                context.getString(R.string.lorem),
+                imageUrl = "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
+            )
+        )
+        add(
+            Food(
+                "OfNxGeumsEYkkfKsfgzx",
+                "",
+                context.getString(R.string.lorem),
+                imageUrl = "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
+            )
+        )
+        add(
+            Food(
+                "OfNxGeumsEYkkfKsfgzx",
+                "",
+                context.getString(R.string.lorem),
+                imageUrl = "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
+            )
+        )
+        add(
+            Food(
+                "OfNxGeumsEYkkfKsfgzx",
+                "",
+                context.getString(R.string.lorem),
+                imageUrl = "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
+            )
+        )
+    }
 
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean = view == `object`
@@ -44,7 +80,8 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
             0 -> {
                 if (pageOne == null) {
                     pageOne = context.layoutInflater.inflate(R.layout.pager_page, container, false)
-                    val url = "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
+                    val url =
+                        "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
                     pageOne?.findViewById<TextView>(R.id.item_name)?.text = "Samosa"
 
                     GlideApp.with(context)
@@ -62,7 +99,8 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
             1 -> {
                 if (pageTwo == null) {
                     pageTwo = context.layoutInflater.inflate(R.layout.pager_page, container, false)
-                    val url = "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
+                    val url =
+                        "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
                     pageTwo?.findViewById<TextView>(R.id.item_name)?.text = "Samosa"
 
                     GlideApp.with(context)
@@ -83,7 +121,8 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
                     pageThree =
                         context.layoutInflater.inflate(R.layout.pager_page, container, false)
                     pageThree?.findViewById<TextView>(R.id.item_name)?.text = "Samosa"
-                    val url = "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
+                    val url =
+                        "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
 
                     GlideApp.with(context)
                         .asBitmap()
@@ -101,7 +140,8 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
                 if (pageFour == null) {
                     pageFour = context.layoutInflater.inflate(R.layout.pager_page, container, false)
                     pageFour?.findViewById<TextView>(R.id.item_name)?.text = "Samosa"
-                    val url = "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
+                    val url =
+                        "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
 
                     GlideApp.with(context)
                         .asBitmap()

@@ -51,6 +51,7 @@
                 android:paddingStart="@dimen/padding_normal"
                 android:paddingEnd="@dimen/zero_spacing"
                 android:paddingBottom="@dimen/spacing_normal"
+                android:paddingTop="@dimen/spacing_normal"
                 android:text="@{food.category}"
                 android:textAppearance="?textAppearanceCaption"
                 app:layout_constraintTop_toBottomOf="@id/food_name"

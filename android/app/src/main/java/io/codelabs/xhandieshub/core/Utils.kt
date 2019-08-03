@@ -30,4 +30,6 @@ object Utils {
      * Shopping Cart collection
      */
     const val CART_COLLECTION = "users/%s/cart"
+
+    const val DEFAULT_RESTAURANT = ""
 }

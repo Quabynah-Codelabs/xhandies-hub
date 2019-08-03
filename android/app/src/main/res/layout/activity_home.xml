@@ -39,6 +39,14 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <io.codelabs.widget.BaselineGridTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chef's Choice"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/padding_normal"
+                android:textAppearance="?textAppearanceHeadline5"/>
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:id="@+id/pager_container"
