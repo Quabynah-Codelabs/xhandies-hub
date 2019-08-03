@@ -7,6 +7,7 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions.withCrossFade
+import com.bumptech.glide.request.target.Target
 import io.codelabs.sdk.glide.GlideApp
 import io.codelabs.xhandieshub.R
 import kotlinx.android.parcel.Parcelize
@@ -30,9 +31,9 @@ data class Food(
     constructor() : this("", "")
 
     object FoodCategory {
-        const val CONTINENTAL = "continental"
-        const val LOCAL = "local"
-        const val OTHER = "other"
+        const val CONTINENTAL = "Continental Dish"
+        const val LOCAL = "Local Dish"
+        const val OTHER = "Other Dish"
     }
 
     companion object {
@@ -43,6 +44,7 @@ data class Food(
             GlideApp.with(view.context)
                 .asBitmap()
                 .load(url)
+                .override(Target.SIZE_ORIGINAL)
                 .placeholder(R.color.content_placeholder)
                 .error(R.color.content_placeholder)
                 .transition(withCrossFade())

@@ -22,9 +22,9 @@ class FoodRepository private constructor(
     /**
      * Get all foods from the database
      */
-    fun getAllFoods(): QueryLiveData<Food> = QueryLiveData(foodQuery, Food::class.java)
+    fun getAllFoods(): QueryLiveData<Food> = QueryLiveData(foodQuery, dao, Food::class.java)
 
-//    fun getAllFoods(): LiveData<MutableList<Food>> = dao.getAllFoods()
+    fun getAllLocalFoods(): LiveData<MutableList<Food>> = dao.getAllFoods()
 
     /**
      * Get a single [Food] item by [key]

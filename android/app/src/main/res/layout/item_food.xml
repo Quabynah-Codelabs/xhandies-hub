@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="food"
             type="io.codelabs.xhandieshub.model.Food" />
@@ -29,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@color/content_placeholder"
+                android:scaleType="centerCrop"
                 app:foodImage="@{food.imageUrl}"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -79,7 +79,7 @@
                 android:paddingStart="@dimen/zero_spacing"
                 android:paddingEnd="@dimen/padding_normal"
                 android:paddingBottom="@dimen/padding_normal"
-                android:text="@{String.valueOf(food.price)}"
+                android:text="@{String.format(`GHC %s`, String.valueOf(food.price))}"
                 android:textAppearance="?textAppearanceSubtitle2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/food_desc"

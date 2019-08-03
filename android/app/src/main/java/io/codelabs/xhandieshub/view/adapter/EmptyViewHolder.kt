@@ -6,4 +6,4 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * ViewHolder for empty lists
  */
-class EmptyViewHolder(v: View): RecyclerView.ViewHolder(v)
+class EmptyViewHolder(val v: View): RecyclerView.ViewHolder(v)

@@ -16,6 +16,8 @@ class FoodViewModel(app: Application, private val repository: FoodRepository) :
 
     fun getAllFoods(): QueryLiveData<Food> = repository.getAllFoods()
 
+    fun getAllLocalFoods(): LiveData<MutableList<Food>> = repository.getAllLocalFoods()
+
     fun getFoodByKey(key: String): LiveData<Food> = repository.getFoodByKey(key)
 
 }

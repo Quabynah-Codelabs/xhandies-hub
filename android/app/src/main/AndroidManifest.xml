@@ -28,6 +28,7 @@
         </activity>
         <activity
             android:name=".view.HomeActivity"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|screenLayout|screenSize" />
         <activity
             android:name=".view.AuthActivity"

@@ -8,9 +8,7 @@ import io.codelabs.xhandieshub.model.Food
  * Food List ViewHolder
  */
 class FoodViewHolder(private val binding: ItemFoodBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    fun bind(food: Food) {
+    fun bind(food: Food?) {
         binding.food = food
     }
-
 }

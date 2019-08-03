@@ -2,9 +2,18 @@ package io.codelabs.xhandieshub.core.common
 
 import androidx.lifecycle.LiveData
 import com.google.firebase.firestore.*
+import io.codelabs.xhandieshub.core.database.FoodDao
 import io.codelabs.xhandieshub.core.debugger
+import io.codelabs.xhandieshub.model.Food
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class QueryLiveData<Model>(private val query: Query, private val type: Class<Model>) :
+class QueryLiveData<Model>(
+    private val query: Query,
+    private val dao: FoodDao,
+    private val type: Class<Model>
+) :
     LiveData<MutableList<Model?>>(), EventListener<QuerySnapshot> {
     private var listener: ListenerRegistration? = null
 
@@ -14,7 +23,17 @@ class QueryLiveData<Model>(private val query: Query, private val type: Class<Mod
             return
         }
 
-        postValue(toDocList(snapshot))
+        postValue(toDocList(snapshot).apply {
+            val models = this
+
+            CoroutineScope(Dispatchers.IO).launch {
+                models.forEach { item ->
+                    if (item is Food? && item != null) {
+                        dao.insertItem(item)
+                    }
+                }
+            }
+        })
     }
 
     override fun onActive() {

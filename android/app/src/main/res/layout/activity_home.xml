@@ -5,6 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_light"
     tools:context=".view.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -40,6 +41,7 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
+                android:id="@+id/pager_container"
                 android:layout_height="@dimen/nav_header_height">
 
                 <androidx.viewpager.widget.ViewPager
@@ -55,6 +57,14 @@
                     android:layout_marginTop="@dimen/padding_dialog" />
 
             </FrameLayout>
+
+            <io.codelabs.widget.BaselineGridTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recommended Dishes"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/padding_normal"
+                android:textAppearance="?textAppearanceHeadline5"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/food_list"
