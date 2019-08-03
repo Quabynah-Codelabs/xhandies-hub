@@ -16,6 +16,7 @@ import io.codelabs.xhandieshub.core.debugger
 import io.codelabs.xhandieshub.model.User
 import io.codelabs.xhandieshub.view.adapter.FoodListAdapter
 import io.codelabs.xhandieshub.view.adapter.HomePagerAdapter
+import io.codelabs.xhandieshub.viewmodel.FoodViewModel
 import io.codelabs.xhandieshub.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.coroutines.launch
@@ -28,6 +29,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeActivity : BaseActivity() {
 
     private val userViewModel by viewModel<UserViewModel>()
+    private val foodViewModel by viewModel<FoodViewModel>()
     private lateinit var adapter: FoodListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,6 +74,11 @@ class HomeActivity : BaseActivity() {
             }
         }
         food_list.layoutManager = lm
+
+        // Kick-off initial load
+        foodViewModel.getAllFoods().observe(this, Observer { foods ->
+            debugger("All foods from database: ${foods?.size}")
+        })
     }
 
     private fun setupPager() {

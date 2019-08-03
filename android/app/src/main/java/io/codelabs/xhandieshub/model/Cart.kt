@@ -1,6 +1,5 @@
 package io.codelabs.xhandieshub.model
 
-import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
@@ -14,7 +13,7 @@ data class Cart(
     var foodId: String,
     var quantity: Int = 0,
     var timestamp: Long = System.currentTimeMillis()
-) : Parcelable {
+) : Model {
 
     @Ignore
     constructor() : this("", "")

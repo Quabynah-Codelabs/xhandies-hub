@@ -14,4 +14,7 @@ interface FoodDao : BaseDao<Food> {
     @Query("SELECT * FROM foods WHERE `key` = :key")
     fun getFoodByKey(key: String): LiveData<Food>
 
+    @Query("SELECT * FROM foods ORDER BY price DESC")
+    fun getAllFoods(): LiveData<MutableList<Food>>
+
 }

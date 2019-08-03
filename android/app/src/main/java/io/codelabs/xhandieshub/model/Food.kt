@@ -1,6 +1,5 @@
 package io.codelabs.xhandieshub.model
 
-import android.os.Parcelable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.room.Entity
@@ -24,7 +23,7 @@ data class Food(
     var price: Double = 1.00,
     var quantity: Int = 100,
     var restaurant: String? = null
-) : Parcelable {
+) : Model {
 
     @Ignore
     // No-Argument constructor needed for serialization from Firebase Firestore

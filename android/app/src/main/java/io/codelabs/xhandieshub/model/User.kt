@@ -1,6 +1,5 @@
 package io.codelabs.xhandieshub.model
 
-import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
@@ -15,7 +14,7 @@ data class User(
     var timestamp: Long = System.currentTimeMillis(),
     var creditCard: String? = null,
     var cashBalance: Long? = -1L
-) : Parcelable {
+) : Model {
 
     @Ignore
     // No-Argument constructor needed for serialization from Firebase Firestore
