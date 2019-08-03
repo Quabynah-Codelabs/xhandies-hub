@@ -3,6 +3,7 @@ package io.codelabs.xhandieshub.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import io.codelabs.xhandieshub.core.common.QueryLiveData
 import io.codelabs.xhandieshub.model.Food
 import io.codelabs.xhandieshub.viewmodel.repository.FoodRepository
 
@@ -13,7 +14,7 @@ import io.codelabs.xhandieshub.viewmodel.repository.FoodRepository
 class FoodViewModel(app: Application, private val repository: FoodRepository) :
     AndroidViewModel(app) {
 
-    fun getAllFoods(): LiveData<MutableList<Food>> = repository.getAllFoods()
+    fun getAllFoods(): QueryLiveData<Food> = repository.getAllFoods()
 
     fun getFoodByKey(key: String): LiveData<Food> = repository.getFoodByKey(key)
 
