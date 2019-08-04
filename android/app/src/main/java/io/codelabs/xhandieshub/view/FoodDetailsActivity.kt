@@ -1,15 +1,19 @@
 package io.codelabs.xhandieshub.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import io.codelabs.sdk.util.toast
 import io.codelabs.xhandieshub.R
 import io.codelabs.xhandieshub.core.base.BaseActivity
 import io.codelabs.xhandieshub.databinding.ActivityFoodBinding
 import io.codelabs.xhandieshub.model.Food
+import io.codelabs.xhandieshub.viewmodel.FoodViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FoodDetailsActivity : BaseActivity() {
     private lateinit var binding: ActivityFoodBinding
+    private val foodViewModel by viewModel<FoodViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,5 +37,11 @@ class FoodDetailsActivity : BaseActivity() {
 
     companion object {
         const val FOOD = "food"
+    }
+
+    fun addToCart(view: View) {
+        toast("Added to cart")
+        foodViewModel.addToCart(binding.food as Food)
+        finishAfterTransition()
     }
 }

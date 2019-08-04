@@ -1,10 +1,12 @@
 package io.codelabs.xhandieshub.view.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.Nullable
+import androidx.core.os.bundleOf
 import androidx.viewpager.widget.PagerAdapter
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
@@ -12,6 +14,8 @@ import io.codelabs.sdk.glide.GlideApp
 import io.codelabs.xhandieshub.R
 import io.codelabs.xhandieshub.core.layoutInflater
 import io.codelabs.xhandieshub.model.Food
+import io.codelabs.xhandieshub.view.FoodDetailsActivity
+import kotlinx.android.synthetic.main.pager_page.view.*
 
 /**
  * Adapter for the home page products view pager
@@ -30,33 +34,33 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
         add(
             Food(
                 "OfNxGeumsEYkkfKsfgzx",
-                "Samosa",
+                "Rice with Kontomire Stew",
                 context.getString(R.string.lorem),
-                imageUrl = "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
+                imageUrl = "https://media.timeout.com/images/102963971/630/472/image.jpg"
             )
         )
         add(
             Food(
                 "OfNxGeumsEYkkfKsfgzx",
-                "",
+                "Fante Fante with Banku",
                 context.getString(R.string.lorem),
-                imageUrl = "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
+                imageUrl = "https://i.ytimg.com/vi/4C6fnG6qUVY/maxresdefault.jpg"
             )
         )
         add(
             Food(
                 "OfNxGeumsEYkkfKsfgzx",
-                "",
+                "Plantain with Kontomire Stew",
                 context.getString(R.string.lorem),
-                imageUrl = "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
+                imageUrl = "https://cdn.shopify.com/s/files/1/0760/0339/files/ampesi_large.jpg?5862185721686863705"
             )
         )
         add(
             Food(
                 "OfNxGeumsEYkkfKsfgzx",
-                "",
+                "Banku with Tilapia",
                 context.getString(R.string.lorem),
-                imageUrl = "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
+                imageUrl = "https://www.primenewsghana.com/images/banku_1.jpg"
             )
         )
     }
@@ -80,18 +84,30 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
             0 -> {
                 if (pageOne == null) {
                     pageOne = context.layoutInflater.inflate(R.layout.pager_page, container, false)
-                    val url =
-                        "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
-                    pageOne?.findViewById<TextView>(R.id.item_name)?.text = "Samosa"
+                    pageOne?.findViewById<TextView>(R.id.item_name)?.text = chefsPick[0].name
 
                     GlideApp.with(context)
                         .asBitmap()
-                        .load(url)
+                        .load(chefsPick[0].imageUrl)
                         .placeholder(R.color.content_placeholder)
                         .error(R.color.content_placeholder)
                         .transition(BitmapTransitionOptions.withCrossFade())
                         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                         .into(pageOne!!.findViewById(R.id.item_image))
+
+                    pageOne?.item_image?.setOnClickListener {
+                        context.startActivity(
+                            Intent(
+                                context,
+                                FoodDetailsActivity::class.java
+                            ).apply {
+                                putExtras(
+                                    bundleOf(
+                                        Pair(FoodDetailsActivity.FOOD, chefsPick[0])
+                                    )
+                                )
+                            })
+                    }
                 }
                 pageOne!!
             }
@@ -99,19 +115,30 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
             1 -> {
                 if (pageTwo == null) {
                     pageTwo = context.layoutInflater.inflate(R.layout.pager_page, container, false)
-                    val url =
-                        "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
-                    pageTwo?.findViewById<TextView>(R.id.item_name)?.text = "Samosa"
+                    pageTwo?.findViewById<TextView>(R.id.item_name)?.text = chefsPick[1].name
 
                     GlideApp.with(context)
                         .asBitmap()
-                        .load(url)
+                        .load(chefsPick[1].imageUrl)
                         .placeholder(R.color.content_placeholder)
                         .error(R.color.content_placeholder)
                         .transition(BitmapTransitionOptions.withCrossFade())
                         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                         .into(pageTwo!!.findViewById(R.id.item_image))
 
+                    pageTwo?.item_image?.setOnClickListener {
+                        context.startActivity(
+                            Intent(
+                                context,
+                                FoodDetailsActivity::class.java
+                            ).apply {
+                                putExtras(
+                                    bundleOf(
+                                        Pair(FoodDetailsActivity.FOOD, chefsPick[1])
+                                    )
+                                )
+                            })
+                    }
                 }
                 pageTwo!!
             }
@@ -120,18 +147,30 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
                 if (pageThree == null) {
                     pageThree =
                         context.layoutInflater.inflate(R.layout.pager_page, container, false)
-                    pageThree?.findViewById<TextView>(R.id.item_name)?.text = "Samosa"
-                    val url =
-                        "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
+                    pageThree?.findViewById<TextView>(R.id.item_name)?.text = chefsPick[2].name
 
                     GlideApp.with(context)
                         .asBitmap()
-                        .load(url)
+                        .load(chefsPick[2].imageUrl)
                         .placeholder(R.color.content_placeholder)
                         .error(R.color.content_placeholder)
                         .transition(BitmapTransitionOptions.withCrossFade())
                         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                         .into(pageThree!!.findViewById(R.id.item_image))
+
+                    pageThree?.item_image?.setOnClickListener {
+                        context.startActivity(
+                            Intent(
+                                context,
+                                FoodDetailsActivity::class.java
+                            ).apply {
+                                putExtras(
+                                    bundleOf(
+                                        Pair(FoodDetailsActivity.FOOD, chefsPick[2])
+                                    )
+                                )
+                            })
+                    }
                 }
                 pageThree!!
             }
@@ -139,18 +178,31 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
             else -> {
                 if (pageFour == null) {
                     pageFour = context.layoutInflater.inflate(R.layout.pager_page, container, false)
-                    pageFour?.findViewById<TextView>(R.id.item_name)?.text = "Samosa"
-                    val url =
-                        "https://firebasestorage.googleapis.com/v0/b/xhandieshub.appspot.com/o/Aloo-Samosa-1.jpg?alt=media&token=cbedd531-f2af-46cf-859c-f6f9f1dc7e4a"
+                    pageFour?.findViewById<TextView>(R.id.item_name)?.text = chefsPick[3].name
 
                     GlideApp.with(context)
                         .asBitmap()
-                        .load(url)
+                        .load(chefsPick[3].imageUrl)
                         .placeholder(R.color.content_placeholder)
                         .error(R.color.content_placeholder)
                         .transition(BitmapTransitionOptions.withCrossFade())
                         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                         .into(pageFour!!.findViewById(R.id.item_image))
+
+                    pageFour?.item_image?.setOnClickListener {
+                        context.startActivity(
+                            Intent(
+                                context,
+                                FoodDetailsActivity::class.java
+                            ).apply {
+                                putExtras(
+                                    bundleOf(
+                                        Pair(FoodDetailsActivity.FOOD, chefsPick[3])
+                                    )
+                                )
+                            })
+                    }
+
                 }
                 pageFour!!
             }

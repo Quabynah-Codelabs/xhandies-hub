@@ -42,10 +42,11 @@ val roomModule = module {
     single { AppDatabase.getInstance(androidContext()) }
     single { get<AppDatabase>().userDao() }
     single { get<AppDatabase>().foodDao() }
+    single { get<AppDatabase>().cartDao() }
 
     /*Repositories*/
     single { UserRepository.getInstance(get(), get(), get(), get()) }
-    single { FoodRepository.getInstance(get(), get()) }
+    single { FoodRepository.getInstance(get(), get(), get(), get()) }
 
     /*Factories*/
     single { UserViewModelFactory(androidApplication(), get()) }

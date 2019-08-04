@@ -31,5 +31,5 @@ object Utils {
      */
     const val CART_COLLECTION = "users/%s/cart"
 
-    const val DEFAULT_RESTAURANT = ""
+    const val DEFAULT_RESTAURANT = "Perry's Restaurant"
 }

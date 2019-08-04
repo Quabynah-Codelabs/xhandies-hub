@@ -5,16 +5,17 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
-@Entity
+@Entity(tableName = "carts")
 @Parcelize
 data class Cart(
     @PrimaryKey
     val key: String,
     var foodId: String,
+    var userId: String,
     var quantity: Int = 0,
     var timestamp: Long = System.currentTimeMillis()
 ) : Model {
 
     @Ignore
-    constructor() : this("", "")
+    constructor() : this("", "","")
 }
