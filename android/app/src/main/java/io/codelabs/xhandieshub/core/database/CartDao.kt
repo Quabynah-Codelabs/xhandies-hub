@@ -20,4 +20,7 @@ interface CartDao : BaseDao<Cart> {
     @Query("SELECT * FROM carts WHERE userId = :uid ORDER BY timestamp DESC")
     fun getShoppingCartSnapshot(uid: String?): MutableList<Cart>
 
+    @Query("SELECT * FROM carts WHERE foodId = :foodId")
+    fun getCartItem(foodId: String?): Cart?
+
 }

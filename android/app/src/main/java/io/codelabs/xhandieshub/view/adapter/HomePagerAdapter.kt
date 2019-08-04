@@ -35,7 +35,8 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
                 "OfNxGeumsEYkkfKsfgzx",
                 "Rice with Kontomire Stew",
                 context.getString(R.string.lorem),
-                imageUrl = "https://media.timeout.com/images/102963971/630/472/image.jpg"
+                imageUrl = "https://media.timeout.com/images/102963971/630/472/image.jpg",
+                price = 11.99
             )
         )
         add(
@@ -43,7 +44,8 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
                 "OfNxGeumsEYkkfKsfgzx",
                 "Fante Fante with Banku",
                 context.getString(R.string.lorem),
-                imageUrl = "https://i.ytimg.com/vi/4C6fnG6qUVY/maxresdefault.jpg"
+                imageUrl = "https://i.ytimg.com/vi/4C6fnG6qUVY/maxresdefault.jpg",
+                price = 15.99
             )
         )
         add(
@@ -51,7 +53,8 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
                 "OfNxGeumsEYkkfKsfgzx",
                 "Plantain with Kontomire Stew",
                 context.getString(R.string.lorem),
-                imageUrl = "https://cdn.shopify.com/s/files/1/0760/0339/files/ampesi_large.jpg?5862185721686863705"
+                imageUrl = "https://cdn.shopify.com/s/files/1/0760/0339/files/ampesi_large.jpg?5862185721686863705",
+                price = 9.99
             )
         )
         add(
@@ -59,7 +62,8 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
                 "OfNxGeumsEYkkfKsfgzx",
                 "Banku with Tilapia",
                 context.getString(R.string.lorem),
-                imageUrl = "https://www.primenewsghana.com/images/banku_1.jpg"
+                imageUrl = "https://www.primenewsghana.com/images/banku_1.jpg",
+                price = 6.99
             )
         )
     }

@@ -9,6 +9,12 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/item_track"
+        android:icon="@drawable/ic_map"
+        android:title="@string/cart"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/item_logout"
         android:title="@string/logout"
         app:showAsAction="never" />

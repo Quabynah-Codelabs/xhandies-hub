@@ -6,6 +6,8 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
 import io.codelabs.xhandieshub.BuildConfig
 import io.codelabs.xhandieshub.core.database.AppDatabase
+import io.codelabs.xhandieshub.core.location.MapService
+import io.codelabs.xhandieshub.core.payment.PaymentAPI
 import io.codelabs.xhandieshub.core.prefs.AppPreferences
 import io.codelabs.xhandieshub.viewmodel.FoodViewModel
 import io.codelabs.xhandieshub.viewmodel.UserViewModel
@@ -35,6 +37,11 @@ val firebaseModule = module {
     }
 }
 
+val locationModule = module {
+    single { MapService.getInstance() }
+    single { get<MapService>().getService() }
+}
+
 /**
  * Inject Room module
  */
@@ -62,4 +69,12 @@ val roomModule = module {
  */
 val prefsModule = module {
     single { AppPreferences.getInstance(androidContext()) }
+}
+
+/**
+ * Inject payment API
+ */
+val paymentModule = module {
+    single { PaymentAPI.getInstance(androidApplication(), get()) }
+    single { get<PaymentAPI>().service }
 }

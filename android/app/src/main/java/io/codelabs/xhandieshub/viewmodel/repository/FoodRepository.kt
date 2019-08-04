@@ -86,7 +86,6 @@ class FoodRepository private constructor(
     suspend fun clearCart() = withContext(Dispatchers.IO) {
         // Get all cart items locally
         cartDao.getShoppingCartSnapshot(prefs.uid).forEach { cart ->
-
             // Delete item in list
             cartDao.deleteItem(cart)
         }
@@ -107,6 +106,10 @@ class FoodRepository private constructor(
 
     fun getCart(): LiveData<MutableList<Cart>> = cartDao.getShoppingCart(prefs.uid)
 
+    suspend fun getCartItem(foodId: String?): Boolean = withContext(Dispatchers.IO) {
+        val cartItem = cartDao.getCartItem(foodId)
+        cartItem == null
+    }
 
     companion object {
         @Volatile

@@ -3,9 +3,7 @@ package io.codelabs.xhandieshub.core
 import android.app.Application
 import com.google.firebase.FirebaseApp
 import io.codelabs.xhandieshub.BuildConfig
-import io.codelabs.xhandieshub.core.injection.firebaseModule
-import io.codelabs.xhandieshub.core.injection.prefsModule
-import io.codelabs.xhandieshub.core.injection.roomModule
+import io.codelabs.xhandieshub.core.injection.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -25,7 +23,7 @@ class XhandiesApp : Application() {
         startKoin {
             androidLogger(if (BuildConfig.DEBUG) Level.DEBUG else Level.INFO)
             androidContext(this@XhandiesApp)
-            modules(arrayListOf(firebaseModule, roomModule, prefsModule))
+            modules(arrayListOf(locationModule,firebaseModule, roomModule, prefsModule, paymentModule))
         }
     }
 

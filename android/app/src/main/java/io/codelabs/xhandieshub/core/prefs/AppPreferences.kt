@@ -25,7 +25,12 @@ class AppPreferences private constructor(context: Context) {
         }
 
     // Clear all shared preferences stored on the device
-    fun signOut() = prefs.edit().clear()
+    fun signOut() {
+        prefs.edit {
+            clear()
+            apply()
+        }
+    }
 
     companion object {
         @Volatile

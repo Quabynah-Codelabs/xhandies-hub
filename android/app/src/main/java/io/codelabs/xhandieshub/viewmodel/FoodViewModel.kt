@@ -34,6 +34,11 @@ class FoodViewModel(app: Application, private val repository: FoodRepository) :
         repository.removeFromCart(cart)
     }
 
+    /**
+     * Returns true if result is null
+     */
+    suspend fun getCartItem(foodId: String?): Boolean  = repository.getCartItem(foodId)
+
     fun clearCart() = viewModelScope.launch {
         repository.clearCart()
     }

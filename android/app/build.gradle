@@ -118,5 +118,9 @@ dependencies {
     def lottie = "3.0.7"
     implementation "com.airbnb.android:lottie:${lottie}"
 
+    // Maps
+    def maps = "17.0.0"
+    implementation "com.google.android.gms:play-services-maps:$maps"
+
 }
 apply plugin: 'com.google.gms.google-services'

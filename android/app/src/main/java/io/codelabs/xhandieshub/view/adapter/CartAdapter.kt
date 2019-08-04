@@ -1,24 +1,28 @@
 package io.codelabs.xhandieshub.view.adapter
 
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import io.codelabs.xhandieshub.R
 import io.codelabs.xhandieshub.core.base.BaseActivity
-import io.codelabs.xhandieshub.core.intentTo
-import io.codelabs.xhandieshub.model.Food
-import io.codelabs.xhandieshub.view.FoodDetailsActivity
+import io.codelabs.xhandieshub.core.database.FoodDao
+import io.codelabs.xhandieshub.core.debugger
+import io.codelabs.xhandieshub.model.Cart
+import io.codelabs.xhandieshub.viewmodel.FoodViewModel
+import kotlinx.coroutines.launch
 
-class FoodListAdapter(private val context: BaseActivity) :
+class CartAdapter(private val context: BaseActivity, private val viewModel: FoodViewModel) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private val datasource = mutableListOf<Cart>()
+
     override fun getItemViewType(position: Int): Int =
-        if (datasource.isEmpty()) R.layout.item_empty_food else R.layout.item_food
+        if (datasource.isEmpty()) R.layout.item_empty_cart else R.layout.item_cart
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            R.layout.item_food -> FoodViewHolder(
+            R.layout.item_cart -> CartViewHolder(
                 DataBindingUtil.inflate(
                     context.layoutInflater,
                     viewType,
@@ -27,7 +31,7 @@ class FoodListAdapter(private val context: BaseActivity) :
                 )
             )
 
-            R.layout.item_empty_food -> EmptyViewHolder(
+            R.layout.item_empty_cart -> EmptyViewHolder(
                 context.layoutInflater.inflate(
                     viewType,
                     parent,
@@ -42,30 +46,24 @@ class FoodListAdapter(private val context: BaseActivity) :
     override fun getItemCount(): Int = if (datasource.isEmpty()) 1 else datasource.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (getItemViewType(position) == R.layout.item_food) {
-            if (holder is FoodViewHolder) {
-                val food = datasource[position]
-                holder.bind(food)
-                holder.itemView.setOnClickListener {
-                    context.intentTo(
-                        FoodDetailsActivity::class.java, bundleOf(
-                            Pair(FoodDetailsActivity.FOOD, food)
-                        )
-                    )
-                }
+        if (getItemViewType(position) == R.layout.item_cart) {
+            if (holder is CartViewHolder) {
+                val cart = datasource[position]
+                viewModel.getFoodByKey(cart.foodId).observe(context, Observer { food ->
+                    holder.bind(cart, food)
+                    holder.itemView.setOnClickListener { debugger("${cart.foodId} clicked") }
+                })
             }
         }
     }
 
-    fun addFoods(foods: MutableList<Food?>) {
+    fun addCarts(carts: MutableList<Cart>) {
         this.datasource.clear()
-        this.datasource.addAll(foods)
+        this.datasource.addAll(carts)
         notifyDataSetChanged()
     }
 
     fun isEmpty(): Boolean = datasource.isEmpty()
-
-    private val datasource = mutableListOf<Food?>()
 
 
 }

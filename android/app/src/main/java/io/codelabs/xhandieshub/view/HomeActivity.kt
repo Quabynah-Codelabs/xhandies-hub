@@ -5,8 +5,8 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.Tasks
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.codelabs.sdk.util.intentTo
@@ -32,6 +32,8 @@ class HomeActivity : BaseActivity() {
     private val userViewModel by viewModel<UserViewModel>()
     private val foodViewModel by viewModel<FoodViewModel>()
     private lateinit var foodAdapter: FoodListAdapter
+
+    private var hasCartItems: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +64,11 @@ class HomeActivity : BaseActivity() {
                 }
             }
         })
+
+        foodViewModel.cart.observe(this, Observer { carts ->
+            hasCartItems = carts != null && carts.isNotEmpty()
+            invalidateOptionsMenu()
+        })
     }
 
     private fun setupListOfFoods() {
@@ -69,12 +76,6 @@ class HomeActivity : BaseActivity() {
         food_list.itemAnimator = DefaultItemAnimator()
         foodAdapter = FoodListAdapter(this)
         food_list.adapter = foodAdapter
-       /* val lm = GridLayoutManager(this, 2)
-        lm.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-                return if (foodAdapter.isEmpty()) 2 else position
-            }
-        }*/
         food_list.layoutManager = LinearLayoutManager(this)
 
         // Kick-off initial load
@@ -95,12 +96,18 @@ class HomeActivity : BaseActivity() {
         return true
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        menu?.findItem(R.id.item_track)?.isVisible = hasCartItems
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.item_cart) {
-            // Navigate to user's shopping cart
-            intentTo(CartActivity::class.java)
-        } else if (item.itemId == R.id.item_logout) {
-            MaterialAlertDialogBuilder(this@HomeActivity).apply {
+        when (item.itemId) {
+            R.id.item_cart -> // Navigate to user's shopping cart
+                intentTo(CartActivity::class.java)
+            R.id.item_track -> // Navigate to item tracking
+                intentTo(TrackingActivity::class.java)
+            R.id.item_logout -> MaterialAlertDialogBuilder(this@HomeActivity).apply {
                 setMessage("Do you wish to sign out?")
                 setPositiveButton("Yes") { dialogInterface, _ ->
                     dialogInterface.dismiss()

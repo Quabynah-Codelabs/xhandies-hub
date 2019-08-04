@@ -24,30 +24,86 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/large_avatar_height">
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/large_avatar_size">
 
             <io.codelabs.widget.ForegroundImageView
                 android:id="@+id/food_image"
-                android:layout_width="@dimen/large_avatar_height"
-                android:layout_height="match_parent"
+                android:layout_width="@dimen/large_avatar_size"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
                 android:src="@color/content_placeholder"
                 app:foodImage="@{food.imageUrl}"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <io.codelabs.widget.BaselineGridTextView
+                android:id="@+id/food_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/padding_normal"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:padding="@dimen/spacing_normal"
+                android:paddingStart="@dimen/spacing_normal"
+                android:paddingTop="@dimen/spacing_normal"
+                android:paddingEnd="@dimen/spacing_normal"
                 android:text="@{food.name}"
+                android:textAlignment="viewStart"
+                android:textAppearance="?textAppearanceHeadline6"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                app:layout_constraintStart_toEndOf="@id/food_image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/lorem" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_more"
+                app:iconGravity="textStart"
+                app:icon="@drawable/ic_add_light"
+                android:textAllCaps="false"
+                android:enabled="false"
+                android:layout_marginEnd="@dimen/padding_normal"
+                android:layout_marginTop="@dimen/padding_normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/food_desc"
+                android:id="@+id/add_more"/>
+
+            <io.codelabs.widget.BaselineGridTextView
+                android:id="@+id/food_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_normal"
+                android:padding="@dimen/spacing_normal"
+                android:text="@{String.format(`GHC %s`, food.price)}"
+                android:textAlignment="viewStart"
+                android:textColor="?colorAccent"
+                android:layout_marginTop="@dimen/padding_normal"
+                android:textAppearance="?textAppearanceHeadline6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/food_image"
+                app:layout_constraintTop_toBottomOf="@id/food_desc"
+                tools:text="GHC 12.88" />
+
+            <io.codelabs.widget.BaselineGridTextView
+                android:id="@+id/food_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_normal"
+                android:ellipsize="end"
+                android:maxLines="4"
+                android:alpha="0.7"
+                android:paddingStart="@dimen/spacing_normal"
+                android:paddingEnd="@dimen/padding_normal"
+                android:text="@{food.desc}"
                 android:textAlignment="viewStart"
                 android:textAppearance="?textAppearanceBody2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/food_image"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@tools:sample/lorem" />
+                app:layout_constraintTop_toBottomOf="@id/food_name"
+                tools:text="@tools:sample/lorem/random" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

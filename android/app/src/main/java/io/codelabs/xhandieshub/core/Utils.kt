@@ -1,6 +1,7 @@
 package io.codelabs.xhandieshub.core
 
 object Utils {
+    const val CACHE_NAME = "xhandieshub_cache"
     /**
      * Dummy Credit Card
      */

@@ -28,6 +28,9 @@ app.post("/checkout", (req, res) => {
 });
 
 // Server started
-app.listen(process.env.PORT || 9900, () => {
-  console.log("Server started successfully...");
-});
+// app.listen(process.env.PORT || 9900, () => {
+//   console.log("Server started successfully...");
+// });
+
+// Export module
+module.exports = app;

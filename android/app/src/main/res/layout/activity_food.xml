@@ -8,6 +8,10 @@
         <variable
             name="food"
             type="io.codelabs.xhandieshub.model.Food" />
+
+        <variable
+            name="isNotInCart"
+            type="Boolean" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -44,8 +48,8 @@
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="@dimen/spacing_large"
-                android:elevation="@dimen/z_card">
+                android:elevation="@dimen/z_card"
+                android:paddingBottom="@dimen/spacing_large">
 
                 <io.codelabs.widget.ForegroundImageView
                     android:id="@+id/food_image"
@@ -113,14 +117,15 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/food_desc"
                     android:layout_marginTop="@dimen/spacing_large"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginEnd="@dimen/fab_margin"
-                    android:text="Add to cart"
+                    android:enabled="@{isNotInCart, default=`false`}"
                     android:onClick="addToCart"
+                    android:text="@string/add_to_cart"
+                    android:textAllCaps="false"
                     app:icon="@drawable/ic_cart"
-                    android:textAllCaps="false"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/food_desc" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

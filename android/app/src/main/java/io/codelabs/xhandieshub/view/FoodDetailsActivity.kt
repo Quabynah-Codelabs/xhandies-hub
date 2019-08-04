@@ -9,6 +9,7 @@ import io.codelabs.xhandieshub.core.base.BaseActivity
 import io.codelabs.xhandieshub.databinding.ActivityFoodBinding
 import io.codelabs.xhandieshub.model.Food
 import io.codelabs.xhandieshub.viewmodel.FoodViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FoodDetailsActivity : BaseActivity() {
@@ -24,15 +25,13 @@ class FoodDetailsActivity : BaseActivity() {
         if (intent.hasExtra(FOOD)) {
             val food = intent.getParcelableExtra<Food>(FOOD)
             binding.food = food
-            bindUI()
+            ioScope.launch {
+                binding.isNotInCart = foodViewModel.getCartItem(binding.food?.key)
+            }
         } else {
             toast("Cannot view details of this food")
             finishAfterTransition()
         }
-    }
-
-    private fun bindUI() {
-        // todo: bind UI
     }
 
     fun addToCart(view: View) {
