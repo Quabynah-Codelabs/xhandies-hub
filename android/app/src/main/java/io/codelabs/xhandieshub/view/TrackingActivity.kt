@@ -66,7 +66,7 @@ class TrackingActivity : BaseActivity(), OnMapReadyCallback {
                 val currentPos = LatLng(location.latitude, location.longitude)
                 mMap?.addMarker(MarkerOptions().position(currentPos).title("Your current position"))
                 mMap?.addMarker(MarkerOptions().position(otherPosition).title("Tracked products"))
-                mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(currentPos, 19.0f))
+                mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(currentPos, 15.0f))
 
                 // Observe distance
                 try {
@@ -148,7 +148,7 @@ class TrackingActivity : BaseActivity(), OnMapReadyCallback {
 
         val currentPos = LatLng(tracker.latitude, tracker.longitude)
         mMap?.addMarker(MarkerOptions().position(currentPos).title("Your current position"))
-        mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(currentPos, 19.0f))
+        mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(currentPos, 15.0f))
     }
 
     override fun onRequestPermissionsResult(

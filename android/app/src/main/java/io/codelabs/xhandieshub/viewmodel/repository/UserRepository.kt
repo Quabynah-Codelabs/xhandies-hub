@@ -3,6 +3,9 @@ package io.codelabs.xhandieshub.viewmodel.repository
 import androidx.lifecycle.LiveData
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import io.codelabs.xhandieshub.core.Callback
@@ -77,32 +80,51 @@ class UserRepository(
                     }
                 }
             } catch (e: Exception) {
-                debugger(e.localizedMessage)
-//                if (e is FirebaseAuthInvalidUserException) {
-                val currentUser =
-                    Tasks.await(auth.createUserWithEmailAndPassword(email, password)).user
-                val user = User(
-                    currentUser.uid,
-                    currentUser.email!!,
-                    creditCard = Utils.DUMMY_CC,
-                    cashBalance = 0
-                )
+                when (e) {
+                    is FirebaseAuthUserCollisionException -> {
+                        debugger("Account collision error")
+                        callback(null)
+                    }
+                    is FirebaseAuthInvalidUserException -> {
+                        debugger("Invalid user")
+                        callback(null)
+                    }
+                    is FirebaseAuthInvalidCredentialsException -> {
+                        debugger("Invalid credentials")
+                        callback(null)
+                    }
+                    else -> {
+                        debugger("Unknown error: ${e.localizedMessage}")
 
-                // Store in remote database
-                Tasks.await(
-                    firestore.collection(Utils.USER_COLLECTION).document(user.uid).set(
-                        user,
-                        SetOptions.merge()
-                    )
-                )
+                        try {
+                            val currentUser =
+                                Tasks.await(auth.createUserWithEmailAndPassword(email, password))
+                                    .user
+                            val user = User(
+                                currentUser.uid,
+                                currentUser.email!!,
+                                creditCard = Utils.DUMMY_CC,
+                                cashBalance = 0
+                            )
 
-                // Store in local database
-                userDao.insertItem(user)
-                prefs.uid = user.uid
-                callback(user)
-//                } else {
-//                    callback(null)
-//                }
+                            // Store in remote database
+                            Tasks.await(
+                                firestore.collection(Utils.USER_COLLECTION).document(user.uid).set(
+                                    user,
+                                    SetOptions.merge()
+                                )
+                            )
+
+                            // Store in local database
+                            userDao.insertItem(user)
+                            prefs.uid = user.uid
+                            callback(user)
+                        } catch (e: Exception) {
+                            debugger(e.localizedMessage)
+                            callback(null)
+                        }
+                    }
+                }
             }
         }
     }
@@ -111,8 +133,10 @@ class UserRepository(
 
     fun resetPassword(email: String, callback: Callback<String>) {
         try {
-            Tasks.await(auth.sendPasswordResetEmail(email))
-            callback("Email sent successfully")
+            CoroutineScope(Dispatchers.IO).launch {
+                Tasks.await(auth.sendPasswordResetEmail(email))
+                callback("Email sent successfully")
+            }
         } catch (ex: Exception) {
             debugger(ex.localizedMessage)
             callback(ex.localizedMessage ?: "Cannot send reset mail")
