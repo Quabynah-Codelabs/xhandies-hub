@@ -35,13 +35,14 @@ class FoodDetailsActivity : BaseActivity() {
         // todo: bind UI
     }
 
-    companion object {
-        const val FOOD = "food"
-    }
-
     fun addToCart(view: View) {
         toast("Added to cart")
         foodViewModel.addToCart(binding.food as Food)
         finishAfterTransition()
     }
+
+    companion object {
+        const val FOOD = "food"
+    }
+
 }

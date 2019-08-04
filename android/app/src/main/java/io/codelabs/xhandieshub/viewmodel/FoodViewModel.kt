@@ -3,8 +3,10 @@ package io.codelabs.xhandieshub.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import io.codelabs.xhandieshub.core.common.QueryLiveData
+import io.codelabs.xhandieshub.model.Cart
 import io.codelabs.xhandieshub.model.Food
 import io.codelabs.xhandieshub.viewmodel.repository.FoodRepository
 import kotlinx.coroutines.launch
@@ -16,6 +18,8 @@ import kotlinx.coroutines.launch
 class FoodViewModel(app: Application, private val repository: FoodRepository) :
     AndroidViewModel(app) {
 
+    val cart: LiveData<MutableList<Cart>> = repository.getCart()
+
     fun getAllFoods(): QueryLiveData<Food> = repository.getAllFoods()
 
     fun getAllLocalFoods(): LiveData<MutableList<Food>> = repository.getAllLocalFoods()
@@ -26,8 +30,8 @@ class FoodViewModel(app: Application, private val repository: FoodRepository) :
         repository.addToCart(food)
     }
 
-    fun removeFromCart(food: Food) = viewModelScope.launch {
-        repository.removeFromCart(food)
+    fun removeFromCart(cart: Cart) = viewModelScope.launch {
+        repository.removeFromCart(cart)
     }
 
     fun clearCart() = viewModelScope.launch {
