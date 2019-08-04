@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.core.os.bundleOf
 import androidx.viewpager.widget.PagerAdapter
@@ -84,7 +83,7 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
             0 -> {
                 if (pageOne == null) {
                     pageOne = context.layoutInflater.inflate(R.layout.pager_page, container, false)
-                    pageOne?.findViewById<TextView>(R.id.item_name)?.text = chefsPick[0].name
+                    pageOne?.item_name?.text = chefsPick[0].name
 
                     GlideApp.with(context)
                         .asBitmap()
@@ -93,7 +92,7 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
                         .error(R.color.content_placeholder)
                         .transition(BitmapTransitionOptions.withCrossFade())
                         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                        .into(pageOne!!.findViewById(R.id.item_image))
+                        .into(pageOne!!.item_image)
 
                     pageOne?.item_image?.setOnClickListener {
                         context.startActivity(
@@ -115,7 +114,7 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
             1 -> {
                 if (pageTwo == null) {
                     pageTwo = context.layoutInflater.inflate(R.layout.pager_page, container, false)
-                    pageTwo?.findViewById<TextView>(R.id.item_name)?.text = chefsPick[1].name
+                    pageTwo?.item_name?.text = chefsPick[1].name
 
                     GlideApp.with(context)
                         .asBitmap()
@@ -124,7 +123,7 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
                         .error(R.color.content_placeholder)
                         .transition(BitmapTransitionOptions.withCrossFade())
                         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                        .into(pageTwo!!.findViewById(R.id.item_image))
+                        .into(pageTwo!!.item_image)
 
                     pageTwo?.item_image?.setOnClickListener {
                         context.startActivity(
@@ -147,7 +146,7 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
                 if (pageThree == null) {
                     pageThree =
                         context.layoutInflater.inflate(R.layout.pager_page, container, false)
-                    pageThree?.findViewById<TextView>(R.id.item_name)?.text = chefsPick[2].name
+                    pageThree?.item_name?.text = chefsPick[2].name
 
                     GlideApp.with(context)
                         .asBitmap()
@@ -156,7 +155,7 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
                         .error(R.color.content_placeholder)
                         .transition(BitmapTransitionOptions.withCrossFade())
                         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                        .into(pageThree!!.findViewById(R.id.item_image))
+                        .into(pageThree!!.item_image)
 
                     pageThree?.item_image?.setOnClickListener {
                         context.startActivity(
@@ -178,7 +177,7 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
             else -> {
                 if (pageFour == null) {
                     pageFour = context.layoutInflater.inflate(R.layout.pager_page, container, false)
-                    pageFour?.findViewById<TextView>(R.id.item_name)?.text = chefsPick[3].name
+                    pageFour?.item_name?.text = chefsPick[3].name
 
                     GlideApp.with(context)
                         .asBitmap()
@@ -187,7 +186,7 @@ class HomePagerAdapter(private val context: Context) : PagerAdapter() {
                         .error(R.color.content_placeholder)
                         .transition(BitmapTransitionOptions.withCrossFade())
                         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                        .into(pageFour!!.findViewById(R.id.item_image))
+                        .into(pageFour!!.item_image)
 
                     pageFour?.item_image?.setOnClickListener {
                         context.startActivity(
