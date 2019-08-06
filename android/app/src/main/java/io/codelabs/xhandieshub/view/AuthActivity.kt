@@ -48,13 +48,13 @@ class AuthActivity : BaseActivity() {
     }
 
     fun loginOrRegister(view: View) {
-        toggleLoading(true, email, password, view)
+        toggleLoading(true, email, password, view, reset_button)
 
         // Login user and get the Firebase User instance
         viewModel.loginOrRegister(email.text.toString(), password.text.toString()) { user ->
             if (user == null) {
                 uiScope.launch {
-                    toggleLoading(false, email, password, view)
+                    toggleLoading(false, email, password, view, reset_button)
                     toast("User could be logged in for some reason")
                 }
             } else intentTo(HomeActivity::class.java, true)

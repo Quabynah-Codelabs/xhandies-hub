@@ -87,6 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/padding_normal"
                 android:onClick="resetPassword"
+                android:id="@+id/reset_button"
                 android:text="Forgot password?"
                 android:textAllCaps="false" />
 
