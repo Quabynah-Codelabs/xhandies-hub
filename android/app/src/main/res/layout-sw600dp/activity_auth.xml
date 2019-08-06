@@ -9,12 +9,13 @@
 
     <io.codelabs.widget.ForegroundLinearLayout
         android:id="@+id/content"
-        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_width="600dp"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="@dimen/padding_dialog"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        android:padding="@dimen/padding_dialog">
 
         <io.codelabs.widget.BaselineGridTextView
             android:layout_width="match_parent"

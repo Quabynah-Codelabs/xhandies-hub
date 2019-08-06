@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Xhandies Hub</string>
+    <string name="app_name">Xhandie\'s Hub</string>
     <string name="app_desc"><i>Delicious meals served everyday…</i></string>
     <string name="get_started">Get started</string>
-    <string name="welcome_text">Welcome to Xhandies Hub</string>
+    <string name="welcome_text">Welcome to Xhandie\'s Hub</string>
     <string name="welcome_desc">Login to start shopping for your favorite food items</string>
     <string name="password_recover_title">Recover your password</string>
     <string name="password_recover_desc">We will send you an email to reset your password</string>
