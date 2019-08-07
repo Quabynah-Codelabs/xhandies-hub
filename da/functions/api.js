@@ -10,6 +10,7 @@ app.post("/checkout", (req, res) => {
   var body = req.body;
   if (body) {
     console.log(`Request body: ${body}`);
+    // todo: perform functions on payment request body
 
     // Return response
     return res.status(201).json({
