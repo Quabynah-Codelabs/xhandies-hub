@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.Tasks
@@ -76,7 +77,7 @@ class HomeActivity : BaseActivity() {
         food_list.itemAnimator = DefaultItemAnimator()
         foodAdapter = FoodListAdapter(this)
         food_list.adapter = foodAdapter
-        food_list.layoutManager = LinearLayoutManager(this)
+        food_list.layoutManager = /*LinearLayoutManager(this)*/ GridLayoutManager(this, 2)
 
         // Kick-off initial load
         foodViewModel.getAllFoods().observe(this, Observer { foods ->
