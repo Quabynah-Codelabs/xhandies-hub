@@ -18,7 +18,7 @@
             app:icon="@drawable/twotone_perm_identity_24px"
             android:clickable="true"
             android:focusable="true"
-            android:background="?selectableItemBackgroundBorderless"
+            android:background="?selectableItemBackground"
             app:title="Buyer" />
 
         <io.codelabs.sdk.widget.PreferenceView
@@ -28,7 +28,7 @@
             app:icon="@drawable/twotone_location_on_24px"
             android:clickable="true"
             android:focusable="true"
-            android:background="?selectableItemBackgroundBorderless"
+            android:background="?selectableItemBackground"
             app:title="@string/deliver_to" />
 
         <io.codelabs.sdk.widget.PreferenceView
@@ -39,7 +39,7 @@
             android:clickable="true"
             android:focusable="true"
             android:onClick="choosePayment"
-            android:background="?selectableItemBackgroundBorderless"
+            android:background="?selectableItemBackground"
             app:icon="@drawable/twotone_account_balance_24px"
             app:title="@string/confirm_trans_hint" />
 

@@ -2,6 +2,7 @@ package io.codelabs.xhandieshub.view
 
 import android.app.Activity
 import android.location.Geocoder
+import android.location.Location
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -15,6 +16,7 @@ import io.codelabs.xhandieshub.R
 import io.codelabs.xhandieshub.core.base.BaseActivity
 import io.codelabs.xhandieshub.core.debugger
 import io.codelabs.xhandieshub.core.location.GPSTracker
+import io.codelabs.xhandieshub.core.location.TrackingLocationListener
 import io.codelabs.xhandieshub.core.payment.PaymentService
 import io.codelabs.xhandieshub.model.Cart
 import io.codelabs.xhandieshub.model.Food
@@ -84,7 +86,33 @@ class OrderActivity : BaseActivity() {
     private fun getUserInformation() {
         viewModel.currentUser.observe(this@OrderActivity, Observer { user ->
             buyer.summary = user?.username ?: user?.email
-            val tracker = GPSTracker(this@OrderActivity, null)
+            val tracker = GPSTracker(this@OrderActivity, /*object : TrackingLocationListener {
+                override fun onLocationUpdate(location: Location?) {
+                    if (location != null) {
+                        ioScope.launch {
+                            with(Geocoder(this@OrderActivity, Locale.getDefault())) {
+                                try {
+                                    val addressLine = this.getFromLocation(
+                                        location.latitude,
+                                        location.longitude,
+                                        1
+                                    )[0].getAddressLine(0)
+
+                                    uiScope.launch {
+                                        deliver_to.summary = addressLine
+                                    }
+
+                                } catch (e: Exception) {
+                                    debugger(e.localizedMessage)
+                                    uiScope.launch {
+                                        deliver_to.summary = "Cannot get location address"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }*/null)
 
             ioScope.launch {
                 with(Geocoder(this@OrderActivity, Locale.getDefault())) {
@@ -199,14 +227,11 @@ class OrderActivity : BaseActivity() {
                 dialogInterface.dismiss()
 
                 when (i) {
-                    0 -> {
+                    0 -> payment_provider.summary = getString(R.string.momo)
 
-                    }
-
-                    1 -> {
-
-                    }
+                    1 -> payment_provider.summary = getString(R.string.visa)
                 }
+
             }
             setPositiveButton("Cancel") { dialogInterface, _ -> dialogInterface.dismiss() }
 

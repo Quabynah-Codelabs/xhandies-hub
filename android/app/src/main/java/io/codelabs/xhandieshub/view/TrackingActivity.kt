@@ -55,7 +55,7 @@ class TrackingActivity : BaseActivity(), OnMapReadyCallback {
         setupMap()
 
         // Tracker
-        tracker = GPSTracker(this@TrackingActivity, object : TrackingLocationListener {
+        tracker = GPSTracker(this@TrackingActivity, /*object : TrackingLocationListener {
             override fun onLocationUpdate(location: Location?) {
                 if (location == null) return
                 mMap?.clear()
@@ -166,7 +166,115 @@ class TrackingActivity : BaseActivity(), OnMapReadyCallback {
                     }
                 }
             }
-        })
+        }*/ null)
+
+        mMap?.clear()
+        debugger("${tracker.latitude} && ${tracker.longitude}")
+
+        // Other position
+        val otherPosition = LatLng(5.6501491,-0.1825325)
+//                val otherPosition = LatLng(5.7562857, -0.1779957)
+
+        // Re-map user's location
+        val currentPos = LatLng(tracker.latitude, tracker.longitude)
+        mMap?.addMarker(MarkerOptions().position(currentPos).title("Your current position"))
+        mMap?.addMarker(MarkerOptions().position(otherPosition).title("Tracked products"))
+        mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(currentPos, 15.0f))
+
+        ioScope.launch {
+            with(Geocoder(this@TrackingActivity, Locale.getDefault())) {
+                try {
+                    val address =
+                        this.getFromLocation(
+                            tracker.latitude,
+                            tracker.longitude,
+                            2
+                        )[0].getAddressLine(0)
+
+                    debugger("Origin Address: $address")
+
+                    uiScope.launch {
+                        mapApi.getDistance(
+                            origin = "Pan+Express+Fresh%26Fast", // todo: remove this hard coded location in the future
+//                               origin = "${tracker.latitude}, ${tracker.longitude}",
+                            destination = address
+//                                destination = "${otherPosition.latitude}, ${otherPosition.longitude}"
+                        ).observe(this@TrackingActivity, Observer { outcome ->
+                            when (outcome) {
+                                is Outcome.Success -> {
+                                    if (outcome.data.routes.isNotEmpty()) {
+                                        val routes = outcome.data.routes
+                                        try {
+                                            line?.remove()
+                                            for (i in 0 until routes.size) {
+                                                val distance =
+                                                    routes[i].legs[i].distance.text
+                                                val duration =
+                                                    routes[i].legs[i].duration.text
+                                                debugger(
+                                                    String.format(
+                                                        "Distance: %s & Duration: %s",
+                                                        distance,
+                                                        duration
+                                                    )
+                                                )
+
+
+                                                // Draw the polyline
+                                                val encodedString =
+                                                    routes[i].overviewPolyline.points
+                                                val poly =
+                                                    mapService.decodePoly(encodedString)
+
+                                                val options = PolylineOptions()
+                                                  .addAll(poly)
+                                                   /* .add(
+                                                        LatLng(
+                                                            tracker.latitude,
+                                                            tracker.longitude
+                                                        )
+                                                        , otherPosition
+                                                    )*/
+                                                    .width(20.0f)
+                                                    .color(
+                                                        ContextCompat.getColor(
+                                                            this@TrackingActivity,
+                                                            R.color.colorAccent
+                                                        )
+                                                    )
+                                                    .geodesic(true)
+
+                                                line = mMap?.addPolyline(options)
+                                            }
+                                        } catch (e: Exception) {
+                                            debugger(e.localizedMessage)
+                                        }
+                                    } else {
+                                        debugger("no routes found")
+                                    }
+                                }
+
+                                is Outcome.Progress -> {
+                                    // Loading location
+                                    debugger("Loading location")
+                                }
+
+                                is Outcome.ApiError, is Outcome.Failure -> {
+                                    // error occurred
+                                    debugger("An error occurred while loading location")
+                                }
+                            }
+                        })
+                    }
+
+                } catch (e: Exception) {
+                    debugger(e.localizedMessage)
+                    uiScope.launch {
+                        toast("Cannot find target destination")
+                    }
+                }
+            }
+        }
     }
 
     private fun requestLocationPermission() {
