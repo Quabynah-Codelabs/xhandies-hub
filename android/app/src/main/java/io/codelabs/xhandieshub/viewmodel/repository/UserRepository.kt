@@ -29,9 +29,56 @@ class UserRepository(
 ) {
 
     private val ioScope = CoroutineScope(Dispatchers.IO)
-//    private val uiScope = CoroutineScope(Dispatchers.Main)
 
-    fun loginOrRegister(email: String, password: String, callback: Callback<User?>) {
+    fun createAccount(email: String, password: String, callback: Callback<User?>) {
+        ioScope.launch {
+            try {
+                val currentUser =
+                    Tasks.await(auth.createUserWithEmailAndPassword(email, password))
+                        .user
+                val user = User(
+                    currentUser.uid,
+                    currentUser.email!!,
+                    creditCard = Utils.DUMMY_CC,
+                    cashBalance = 0
+                )
+
+                // Store in remote database
+                Tasks.await(
+                    firestore.collection(Utils.USER_COLLECTION).document(user.uid).set(
+                        user,
+                        SetOptions.merge()
+                    )
+                )
+
+                // Store in local database
+                userDao.insertItem(user)
+                prefs.uid = user.uid
+                callback(user)
+            } catch (e: Exception) {
+                when (e) {
+                    is FirebaseAuthUserCollisionException -> {
+                        debugger("Account collision error")
+                        callback(null)
+                    }
+                    is FirebaseAuthInvalidUserException -> {
+                        debugger("Invalid user")
+                        callback(null)
+                    }
+                    is FirebaseAuthInvalidCredentialsException -> {
+                        debugger("Invalid credentials")
+                        callback(null)
+                    }
+                    else -> {
+                        debugger("Unknown error: ${e.localizedMessage}")
+                        callback(null)
+                    }
+                }
+            }
+        }
+    }
+
+    fun loginUser(email: String, password: String, callback: Callback<User?>) {
         ioScope.launch {
             try {
                 val firebaseUser =

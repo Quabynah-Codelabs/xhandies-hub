@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/padding_normal"
                 android:enabled="false"
-                android:onClick="loginOrRegister"
+                android:onClick="loginUser"
                 android:text="Continue"
                 android:textAllCaps="false" />
 

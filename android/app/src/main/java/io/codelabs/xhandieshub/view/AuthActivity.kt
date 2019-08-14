@@ -47,11 +47,11 @@ class AuthActivity : BaseActivity() {
         intentTo(PasswordRecoverActivity::class.java)
     }
 
-    fun loginOrRegister(view: View) {
+    fun loginUser(view: View) {
         toggleLoading(true, email, password, view, reset_button)
 
         // Login user and get the Firebase User instance
-        viewModel.loginOrRegister(email.text.toString(), password.text.toString()) { user ->
+        viewModel.loginUser(email.text.toString(), password.text.toString()) { user ->
             if (user == null) {
                 uiScope.launch {
                     toggleLoading(false, email, password, view, reset_button)
