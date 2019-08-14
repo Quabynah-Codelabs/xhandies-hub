@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Xhandie\'s Hub</string>
+    <string name="app_name">Food Service</string>
+    <string name="default_app_name">Online Food Delivery &amp; Ordering System</string>
     <string name="app_desc"><i>Delicious meals served everyday…</i></string>
     <string name="get_started">Get started</string>
-    <string name="welcome_text">Welcome to Xhandie\'s Hub</string>
-    <string name="welcome_desc">Login to start shopping for your favorite food items</string>
+    <string name="welcome_desc">Login to start shopping for your favorite dishes</string>
     <string name="password_recover_title">Recover your password</string>
     <string name="password_recover_desc">We will send you an email to reset your password</string>
     <string name="close_drawer">close_drawer</string>
@@ -11,10 +11,18 @@
     <string name="cart">Cart</string>
     <string name="logout">Logout</string>
     <string name="details">Food details</string>
-    <string name="lorem">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</string>
+    <string name="lorem">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
+        deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
+        similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem
+        rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+        impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
+        Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint
+        et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores
+        alias consequatur aut perferendis doloribus asperiores repellat.</string>
     <string name="add_more">Add</string>
-    <string name="proceed_to_payment">Proceed to payment</string>
+    <string name="proceed_to_payment">Pay Now</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="title_activity_tracking">Map</string>
     <string name="loc_permission">In order to start tracking your purchase, you need to enable permission to use your location</string>
+    <string name="formatted_total_amount">Total  <b>GHC %.2f</b></string>
 </resources>

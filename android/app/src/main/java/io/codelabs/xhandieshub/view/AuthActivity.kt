@@ -16,7 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Authentication Screen
- * Users sign up or login to their accounts
+ * Users login to their accounts
  */
 class AuthActivity : BaseActivity() {
 
@@ -70,6 +70,10 @@ class AuthActivity : BaseActivity() {
         for (view in toggleViews) {
             view.isEnabled = !isShown
         }
+    }
+
+    fun signUp(view: View) {
+        intentTo(SignUpActivity::class.java, true)
     }
 
 }

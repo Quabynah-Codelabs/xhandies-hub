@@ -14,6 +14,7 @@ import io.codelabs.xhandieshub.core.debugger
 import io.codelabs.xhandieshub.core.payment.PaymentService
 import io.codelabs.xhandieshub.databinding.ActivityCartBinding
 import io.codelabs.xhandieshub.model.Cart
+import io.codelabs.xhandieshub.model.Food
 import io.codelabs.xhandieshub.view.adapter.CartAdapter
 import io.codelabs.xhandieshub.viewmodel.FoodViewModel
 import kotlinx.android.synthetic.main.activity_cart.*
@@ -56,7 +57,29 @@ class CartActivity : BaseActivity() {
                 carts.clear()
                 carts.addAll(cartList)
                 adapter.addCarts(cartList)
+                getTotalAmount(cartList)
             }
+        })
+    }
+
+    private fun getTotalAmount(cartList: MutableList<Cart>) {
+
+        foodViewModel.getAllLocalFoods().observe(this@CartActivity, Observer {
+            // Show total amount
+            var totalAmount = 0.00
+            val foods = mutableListOf<Food>()
+
+            cartList.forEach { dish ->
+                foods.addAll(it.filter { dish.foodId == it.key })
+            }
+
+            foods.forEach { foodItem ->
+                totalAmount += foodItem.price
+            }
+            
+            // Set amount text
+            total_amount.text =
+                String.format(getString(R.string.formatted_total_amount), totalAmount)
         })
     }
 

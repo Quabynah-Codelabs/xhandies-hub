@@ -53,17 +53,33 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="3"
+                    tools:itemCount="2"
                     tools:listitem="@layout/item_cart" />
 
-                <com.google.android.material.button.MaterialButton
+                <io.codelabs.widget.BaselineGridTextView
+                    android:id="@+id/total_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_gravity="center"
                     android:layout_marginTop="@dimen/spacing_large"
-                    android:enabled="@{isEmptyCart ? false : true, default=`false`}"
-                    android:text="@string/proceed_to_payment"
+                    android:ellipsize="end"
+                    android:alpha="0.7"
+                    android:paddingStart="@dimen/spacing_normal"
+                    android:paddingTop="@dimen/spacing_normal"
+                    android:paddingEnd="@dimen/spacing_normal"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    tools:text="Total  $546" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/padding_large"
+                    android:layout_marginTop="@dimen/padding_normal"
+                    android:layout_marginEnd="@dimen/padding_large"
+                    android:enabled="@{isEmptyCart ? false : true, default=`true`}"
                     android:onClick="makePayment"
+                    android:text="@string/proceed_to_payment"
                     android:textAllCaps="false" />
 
             </io.codelabs.widget.ForegroundLinearLayout>

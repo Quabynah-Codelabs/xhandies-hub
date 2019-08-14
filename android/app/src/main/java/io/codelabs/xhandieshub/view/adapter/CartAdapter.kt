@@ -6,11 +6,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import io.codelabs.xhandieshub.R
 import io.codelabs.xhandieshub.core.base.BaseActivity
-import io.codelabs.xhandieshub.core.database.FoodDao
 import io.codelabs.xhandieshub.core.debugger
 import io.codelabs.xhandieshub.model.Cart
+import io.codelabs.xhandieshub.model.Food
 import io.codelabs.xhandieshub.viewmodel.FoodViewModel
-import kotlinx.coroutines.launch
 
 class CartAdapter(private val context: BaseActivity, private val viewModel: FoodViewModel) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

@@ -11,6 +11,7 @@ data class User(
     @PrimaryKey(autoGenerate = false)
     val uid: String,
     val email: String,
+    val username: String? = null,
     var timestamp: Long = System.currentTimeMillis(),
     var creditCard: String? = null,
     var cashBalance: Long? = -1L
@@ -18,5 +19,5 @@ data class User(
 
     @Ignore
     // No-Argument constructor needed for serialization from Firebase Firestore
-    constructor() : this("", "")
+    constructor() : this("", "", "")
 }

@@ -55,12 +55,16 @@ class HomeActivity : BaseActivity() {
             if (user == null) {
                 ioScope.launch {
                     if (prefs.isLoggedIn) {
-                        val currentUser =
-                            Tasks.await(db.collection(Utils.USER_COLLECTION).document(prefs.uid!!).get())
-                                .toObject(User::class.java)
+                        try {
+                            val currentUser =
+                                Tasks.await(db.collection(Utils.USER_COLLECTION).document(prefs.uid!!).get())
+                                    .toObject(User::class.java)
 
-                        // Update the local user's information
-                        userViewModel.updateUser(currentUser)
+                            // Update the local user's information
+                            userViewModel.updateUser(currentUser)
+                        } catch (e: Exception) {
+                            debugger(e.localizedMessage)
+                        }
                     } else debugger("You are not logged in properly")
                 }
             }

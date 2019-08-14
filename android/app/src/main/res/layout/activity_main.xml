@@ -14,7 +14,7 @@
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/about_peek_height_minus"
+        android:layout_height="@dimen/about_header_height"
         app:lottie_autoPlay="true"
         app:lottie_fileName="5056-delivery-latest.json"
         app:lottie_loop="true"

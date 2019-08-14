@@ -54,7 +54,12 @@
         <activity
             android:name=".view.CartActivity"
             android:configChanges="orientation|screenLayout|screenSize" />
-        <activity android:name=".view.FoodDetailsActivity" />
+        <activity
+            android:name=".view.FoodDetailsActivity"
+            android:configChanges="orientation|screenLayout|screenSize" />
+        <activity
+            android:name=".view.SignUpActivity"
+            android:configChanges="orientation|screenLayout|screenSize" />
 
         <service
             android:name=".core.location.GPSTracker"

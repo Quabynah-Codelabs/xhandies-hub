@@ -5,17 +5,16 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.AuthActivity">
+    tools:context=".view.SignUpActivity">
 
     <io.codelabs.widget.ForegroundLinearLayout
         android:id="@+id/content"
-        android:layout_gravity="center"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        android:layout_width="600dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="@dimen/padding_dialog">
+        android:padding="@dimen/padding_dialog"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <io.codelabs.widget.BaselineGridTextView
             android:layout_width="match_parent"
@@ -39,15 +38,23 @@
             android:textAppearance="?textAppearanceSubtitle2"
             app:fontFamily="@font/exo_2" />
 
-        <io.codelabs.widget.ForegroundImageView
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/large_avatar_height"
-            android:layout_marginBottom="@dimen/spacing_xlarge"
-            android:src="@drawable/ic_undraw_successful_purchase_uyin" />
+            android:layout_height="wrap_content"
+            android:hint="Username">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords|textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_normal"
             android:hint="Email Address">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -82,15 +89,6 @@
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sign Up"
-                android:layout_marginEnd="@dimen/padding_normal"
-                android:textAllCaps="false"
-                android:onClick="signUp"/>
-
-            <com.google.android.material.button.MaterialButton
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/padding_normal"
                 android:enabled="false"
-                android:onClick="loginUser"
+                android:onClick="createUser"
                 android:text="Continue"
                 android:textAllCaps="false" />
 

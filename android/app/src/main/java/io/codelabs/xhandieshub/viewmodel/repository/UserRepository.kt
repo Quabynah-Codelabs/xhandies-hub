@@ -30,7 +30,12 @@ class UserRepository(
 
     private val ioScope = CoroutineScope(Dispatchers.IO)
 
-    fun createAccount(email: String, password: String, callback: Callback<User?>) {
+    fun createAccount(
+        username: String,
+        email: String,
+        password: String,
+        callback: Callback<User?>
+    ) {
         ioScope.launch {
             try {
                 val currentUser =
@@ -39,6 +44,7 @@ class UserRepository(
                 val user = User(
                     currentUser.uid,
                     currentUser.email!!,
+                    username,
                     creditCard = Utils.DUMMY_CC,
                     cashBalance = 0
                 )
@@ -91,6 +97,7 @@ class UserRepository(
                     val user = User(
                         currentUser.uid,
                         currentUser.email!!,
+                        currentUser.displayName,
                         creditCard = Utils.DUMMY_CC,
                         cashBalance = 0
                     )
@@ -150,6 +157,7 @@ class UserRepository(
                             val user = User(
                                 currentUser.uid,
                                 currentUser.email!!,
+                                currentUser.displayName,
                                 creditCard = Utils.DUMMY_CC,
                                 cashBalance = 0
                             )

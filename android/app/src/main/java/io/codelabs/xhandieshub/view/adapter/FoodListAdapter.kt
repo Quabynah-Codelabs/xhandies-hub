@@ -58,9 +58,15 @@ class FoodListAdapter(private val context: BaseActivity) :
     }
 
     fun addFoods(foods: MutableList<Food?>) {
-        this.datasource.clear()
-        this.datasource.addAll(foods)
-        notifyDataSetChanged()
+        if (foods.isEmpty()) return
+        foods.forEach { dish ->
+            val add = !datasource.contains(dish)
+
+            if (add) {
+                datasource.add(dish)
+                notifyItemRangeChanged(0, foods.size)
+            }
+        }
     }
 
     fun isEmpty(): Boolean = datasource.isEmpty()

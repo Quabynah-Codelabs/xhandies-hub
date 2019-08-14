@@ -116,7 +116,7 @@ class MapService {
             .addInterceptor(interceptor)
             .addInterceptor { chain ->
                 val request = chain.request().newBuilder()
-                    .addHeader("key", "AIzaSyATvs0MxR7TwkXZFh-Ne2eb1rpf4yJz2ho").build()
+                    .addHeader("key", "AIzaSyDsmcCALqYB-x9tHwF_nab6vNy0DGv-gxo").build()
                 chain.proceed(request)
             }
             .readTimeout(60, TimeUnit.SECONDS)

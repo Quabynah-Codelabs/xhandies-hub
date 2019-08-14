@@ -3,7 +3,6 @@ package io.codelabs.xhandieshub.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import io.codelabs.xhandieshub.core.common.QueryLiveData
 import io.codelabs.xhandieshub.model.Cart
@@ -37,7 +36,7 @@ class FoodViewModel(app: Application, private val repository: FoodRepository) :
     /**
      * Returns true if result is null
      */
-    suspend fun getCartItem(foodId: String?): Boolean  = repository.getCartItem(foodId)
+    suspend fun getCartItem(foodId: String?): Boolean = repository.getCartItem(foodId)
 
     fun clearCart() = viewModelScope.launch {
         repository.clearCart()
