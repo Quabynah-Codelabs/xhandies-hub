@@ -16,7 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:icon="@drawable/twotone_perm_identity_24px"
-            app:summary="Sandra Owusu"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?selectableItemBackgroundBorderless"
             app:title="Buyer" />
 
         <io.codelabs.sdk.widget.PreferenceView
@@ -24,13 +26,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:icon="@drawable/twotone_location_on_24px"
-            app:summary="Madina"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?selectableItemBackgroundBorderless"
             app:title="@string/deliver_to" />
 
         <io.codelabs.sdk.widget.PreferenceView
+            android:id="@+id/payment_provider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:summary="@string/momo"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="choosePayment"
+            android:background="?selectableItemBackgroundBorderless"
             app:icon="@drawable/twotone_account_balance_24px"
             app:title="@string/confirm_trans_hint" />
 

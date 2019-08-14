@@ -6,8 +6,6 @@ import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.Tasks
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.codelabs.sdk.util.intentTo
@@ -81,7 +79,13 @@ class HomeActivity : BaseActivity() {
         food_list.itemAnimator = DefaultItemAnimator()
         foodAdapter = FoodListAdapter(this)
         food_list.adapter = foodAdapter
-        food_list.layoutManager = /*LinearLayoutManager(this)*/ GridLayoutManager(this, 2)
+        food_list.layoutManager =  GridLayoutManager(this, 2).apply {
+            spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return if (foodAdapter.isEmpty()) 2 else 1
+                }
+            }
+        }
 
         // Kick-off initial load
         foodViewModel.getAllFoods().observe(this, Observer { foods ->

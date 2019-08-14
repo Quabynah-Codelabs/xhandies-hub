@@ -62,6 +62,7 @@
             android:configChanges="orientation|screenLayout|screenSize" />
         <activity
             android:name=".view.OrderActivity"
+            android:theme="@style/XhandiesTheme.Transparent"
             android:configChanges="orientation|screenLayout|screenSize" />
 
         <service

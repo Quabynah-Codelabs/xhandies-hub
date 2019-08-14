@@ -1,6 +1,7 @@
 package io.codelabs.xhandieshub.view
 
 import android.app.Activity
+import android.location.Geocoder
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -13,21 +14,25 @@ import io.codelabs.widget.BottomSheet
 import io.codelabs.xhandieshub.R
 import io.codelabs.xhandieshub.core.base.BaseActivity
 import io.codelabs.xhandieshub.core.debugger
+import io.codelabs.xhandieshub.core.location.GPSTracker
 import io.codelabs.xhandieshub.core.payment.PaymentService
 import io.codelabs.xhandieshub.model.Cart
 import io.codelabs.xhandieshub.model.Food
 import io.codelabs.xhandieshub.viewmodel.FoodViewModel
+import io.codelabs.xhandieshub.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_order.*
 import kotlinx.android.synthetic.main.order_details.*
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class OrderActivity : BaseActivity() {
 
     private val service by inject<PaymentService>()
     private val carts = mutableListOf<Cart>()
     private val foodViewModel by viewModel<FoodViewModel>()
+    private val viewModel by viewModel<UserViewModel>()
     private var appBarElevation: Float = 0.0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +44,7 @@ class OrderActivity : BaseActivity() {
             debugger("Intent extras: $carts")
             checkout.isEnabled = carts.isNotEmpty()
             getTotalAmount(carts)
+            getUserInformation()
         }
 
         appBarElevation = resources.getDimension(R.dimen.z_app_bar)
@@ -73,6 +79,36 @@ class OrderActivity : BaseActivity() {
         }
 
         bottom_sheet.setOnClickListener { onBackPressed() }
+    }
+
+    private fun getUserInformation() {
+        viewModel.currentUser.observe(this@OrderActivity, Observer { user ->
+            buyer.summary = user?.username ?: user?.email
+            val tracker = GPSTracker(this@OrderActivity, null)
+
+            ioScope.launch {
+                with(Geocoder(this@OrderActivity, Locale.getDefault())) {
+                    try {
+                        val addressLine = this.getFromLocation(
+                            tracker.latitude,
+                            tracker.longitude,
+                            1
+                        )[0].getAddressLine(0)
+
+                        uiScope.launch {
+                            deliver_to.summary = addressLine
+                        }
+
+                    } catch (e: Exception) {
+                        debugger(e.localizedMessage)
+                        uiScope.launch {
+                            deliver_to.summary = "Cannot get location address"
+                        }
+                    }
+                }
+            }
+
+        })
     }
 
     private fun getTotalAmount(cartList: MutableList<Cart>) {
@@ -149,5 +185,32 @@ class OrderActivity : BaseActivity() {
 
     companion object {
         const val EXTRA_CART = "CARTS"
+    }
+
+    fun choosePayment(view: View) {
+        MaterialAlertDialogBuilder(this).apply {
+            setTitle(getString(R.string.confirm_trans_hint))
+            setItems(
+                arrayOf(
+                    getString(R.string.momo),
+                    getString(R.string.visa)
+                )
+            ) { dialogInterface, i ->
+                dialogInterface.dismiss()
+
+                when (i) {
+                    0 -> {
+
+                    }
+
+                    1 -> {
+
+                    }
+                }
+            }
+            setPositiveButton("Cancel") { dialogInterface, _ -> dialogInterface.dismiss() }
+
+            show()
+        }
     }
 }
