@@ -95,7 +95,6 @@ class OrderActivity : BaseActivity() {
         })
     }
 
-
     fun checkoutPayment(v: View?) {
         TransitionManager.beginDelayedTransition(bottom_sheet_content)
         loading.visibility = View.VISIBLE
