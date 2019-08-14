@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<io.codelabs.widget.BottomSheet xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/bottom_sheet"
+    tools:context=".view.OrderActivity">
+
+    <LinearLayout
+        android:id="@+id/bottom_sheet_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_light"
+        android:elevation="@dimen/z_fab"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <io.codelabs.widget.BaselineGridTextView
+            android:id="@+id/sheet_title"
+            style="@style/TextAppearance.DialogTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_light"
+            android:gravity="center"
+            android:minHeight="?actionBarSize"
+            android:paddingStart="@dimen/padding_normal"
+            android:paddingTop="@dimen/spacing_micro"
+            android:paddingEnd="@dimen/padding_normal"
+            android:text="@string/receipt"
+            android:textAppearance="?textAppearanceHeadline5"
+            android:textStyle="bold"
+            app:fontFamily="@font/exo_2" />
+
+        <io.codelabs.widget.ObservableScrollView
+            android:id="@+id/scroll_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:nestedScrollingEnabled="true"
+            android:paddingStart="@dimen/zero_spacing"
+            android:paddingTop="@dimen/spacing_normal"
+            android:paddingEnd="@dimen/zero_spacing">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/order_details" />
+
+                <include
+                    layout="@layout/loading"
+                    android:id="@+id/loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="visible" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/checkout"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:enabled="true"
+                    android:onClick="checkoutPayment"
+                    android:fontFamily="@font/exo_2"
+                    android:text="@string/checkout"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </io.codelabs.widget.ObservableScrollView>
+
+    </LinearLayout>
+
+</io.codelabs.widget.BottomSheet>

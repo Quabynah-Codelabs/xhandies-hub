@@ -193,6 +193,10 @@ public class GPSTracker extends Service implements LocationListener {
         listener.onLocationUpdate(location);
     }
 
+    public void updateLocation(Location location) {
+        listener.onLocationUpdate(location);
+    }
+
     @Override
     public void onProviderDisabled(String provider) {
     }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/activity_order">
+
+    <io.codelabs.widget.ForegroundLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layout_total"
+        android:layout_marginBottom="@dimen/spacing_micro"
+        android:orientation="vertical">
+
+        <io.codelabs.sdk.widget.PreferenceView
+            android:id="@+id/buyer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/twotone_perm_identity_24px"
+            app:summary="Sandra Owusu"
+            app:title="Buyer" />
+
+        <io.codelabs.sdk.widget.PreferenceView
+            android:id="@+id/deliver_to"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/twotone_location_on_24px"
+            app:summary="Madina"
+            app:title="@string/deliver_to" />
+
+        <io.codelabs.sdk.widget.PreferenceView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:summary="@string/momo"
+            app:icon="@drawable/twotone_account_balance_24px"
+            app:title="@string/confirm_trans_hint" />
+
+    </io.codelabs.widget.ForegroundLinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:paddingStart="@dimen/spacing_normal"
+        android:paddingTop="@dimen/padding_normal"
+        android:paddingEnd="@dimen/spacing_normal"
+        android:paddingBottom="@dimen/padding_normal">
+
+        <!--Total value's label-->
+        <io.codelabs.widget.BaselineGridTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:text="@string/grand_total"
+            android:textAppearance="?textAppearanceHeadline6"
+            app:fontFamily="@font/exo_2" />
+
+        <!--Total Value-->
+        <io.codelabs.widget.BaselineGridTextView
+            android:id="@+id/order_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:textAppearance="?textAppearanceSubtitle2"
+            app:fontFamily="@font/exo_2"
+            tools:ignore="RelativeOverlap"
+            tools:text="$ 2,600" />
+
+    </RelativeLayout>
+
+</merge>

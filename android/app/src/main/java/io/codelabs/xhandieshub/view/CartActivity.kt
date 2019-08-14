@@ -1,25 +1,20 @@
 package io.codelabs.xhandieshub.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import io.codelabs.sdk.util.intentTo
-import io.codelabs.sdk.util.toast
 import io.codelabs.xhandieshub.R
 import io.codelabs.xhandieshub.core.base.BaseActivity
 import io.codelabs.xhandieshub.core.debugger
-import io.codelabs.xhandieshub.core.payment.PaymentService
 import io.codelabs.xhandieshub.databinding.ActivityCartBinding
 import io.codelabs.xhandieshub.model.Cart
 import io.codelabs.xhandieshub.model.Food
 import io.codelabs.xhandieshub.view.adapter.CartAdapter
 import io.codelabs.xhandieshub.viewmodel.FoodViewModel
 import kotlinx.android.synthetic.main.activity_cart.*
-import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -28,11 +23,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  */
 class CartActivity : BaseActivity() {
     private lateinit var binding: ActivityCartBinding
-
-    private val service by inject<PaymentService>()
     private val foodViewModel by viewModel<FoodViewModel>()
-    private val carts = mutableListOf<Cart>()
-
+    private val carts = arrayListOf<Cart>()
     private lateinit var adapter: CartAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +55,6 @@ class CartActivity : BaseActivity() {
     }
 
     private fun getTotalAmount(cartList: MutableList<Cart>) {
-
         foodViewModel.getAllLocalFoods().observe(this@CartActivity, Observer {
             // Show total amount
             var totalAmount = 0.00
@@ -76,7 +67,7 @@ class CartActivity : BaseActivity() {
             foods.forEach { foodItem ->
                 totalAmount += foodItem.price
             }
-            
+
             // Set amount text
             total_amount.text =
                 String.format(getString(R.string.formatted_total_amount), totalAmount)
@@ -84,48 +75,9 @@ class CartActivity : BaseActivity() {
     }
 
     fun makePayment(v: View?) {
-        ioScope.launch {
-            try {
-                val response =
-                    service.makePaymentAsync(PaymentService.PaymentRequest(prefs.uid!!, carts))
-                        .await()
-
-                // get response
-                val apiResponse = response.body()
-                if (apiResponse != null) {
-                    debugger("Response from payment: ${apiResponse.message}")
-
-                    if (apiResponse.error) {
-                        showFailureDialog()
-                    } else {
-                        // Clear cart
-                        foodViewModel.clearCart()
-                        uiScope.launch {
-                            toast("Payment was successful")
-                            intentTo(TrackingActivity::class.java, true)
-                        }
-                    }
-                } else {
-                    debugger("Cannot make request to server. Response is null")
-                    showFailureDialog()
-                }
-            } catch (e: Exception) {
-                debugger(e.localizedMessage)
-                uiScope.launch {
-                    toast("Unable to make payment")
-                    showFailureDialog()
-                }
-            }
-        }
+        startActivity(Intent(this@CartActivity, OrderActivity::class.java).apply {
+            putParcelableArrayListExtra(OrderActivity.EXTRA_CART, carts)
+        })
     }
 
-    private fun showFailureDialog() {
-        MaterialAlertDialogBuilder(this@CartActivity).apply {
-            setTitle("Payment cancelled")
-            setMessage("Xhandie\'s Hub cannot complete your payment. There seems to be a problem on our side. We will get back to you soon")
-            setOnDismissListener { finishAfterTransition() }
-            setPositiveButton("Dismiss") { dialogInterface, _ -> dialogInterface.dismiss() }
-            show()
-        }
-    }
 }

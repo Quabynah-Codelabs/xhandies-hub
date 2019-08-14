@@ -25,4 +25,15 @@
     <string name="title_activity_tracking">Map</string>
     <string name="loc_permission">In order to start tracking your purchase, you need to enable permission to use your location</string>
     <string name="formatted_total_amount">Total  <b>GHC %.2f</b></string>
+    <string name="receipt">Your Receipt</string>
+    <string name="checkout">Checkout</string>
+    <string name="deliver_to">Deliver to</string>
+    <string name="change">Change</string>
+    <string name="momo">MTN Mobile Money</string>
+    <string name="confirm_trans_hint">Payment Provider</string>
+    <string name="computation">Transaction Breakdown</string>
+    <string name="savings">Savings</string>
+    <string name="delivery_cost">Delivery Cost</string>
+    <string name="tax">Tax</string>
+    <string name="grand_total">Grand Total</string>
 </resources>

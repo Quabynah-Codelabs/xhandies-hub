@@ -72,7 +72,7 @@ interface MapApi {
         const val BASE_URL = "https://maps.googleapis.com/maps/"
     }
 
-    @GET("api/directions/json")
+    @GET("api/directions/json?key=AIzaSyDsmcCALqYB-x9tHwF_nab6vNy0DGv-gxo")
     fun getDistance(
         @Query("units") units: String = "metric",
         @Query("origin") origin: String,
@@ -80,7 +80,7 @@ interface MapApi {
         @Query("mode") mode: String = "walking"
     ): RetrofitLiveData<MapResult>
 
-    @GET("api/directions/json")
+    @GET("api/directions/json?key=AIzaSyDsmcCALqYB-x9tHwF_nab6vNy0DGv-gxo")
     fun getDistanceForDriving(
         @Query("units") units: String = "metric",
         @Query("origin") origin: String,
