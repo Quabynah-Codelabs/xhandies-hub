@@ -172,8 +172,7 @@ class TrackingActivity : BaseActivity(), OnMapReadyCallback {
         debugger("${tracker.latitude} && ${tracker.longitude}")
 
         // Other position
-        val otherPosition = LatLng(5.6501491,-0.1825325)
-//                val otherPosition = LatLng(5.7562857, -0.1779957)
+        val otherPosition = LatLng(5.6554933,-0.1837714)
 
         // Re-map user's location
         val currentPos = LatLng(tracker.latitude, tracker.longitude)
@@ -195,9 +194,9 @@ class TrackingActivity : BaseActivity(), OnMapReadyCallback {
 
                     uiScope.launch {
                         mapApi.getDistance(
-                            origin = "Pan+Express+Fresh%26Fast", // todo: remove this hard coded location in the future
+                            origin = address, // todo: remove this hard coded location in the future
 //                               origin = "${tracker.latitude}, ${tracker.longitude}",
-                            destination = address
+                            destination = /*address*/ "Legon%20Boundary%2C%20Accra%2C%20Ghana"
 //                                destination = "${otherPosition.latitude}, ${otherPosition.longitude}"
                         ).observe(this@TrackingActivity, Observer { outcome ->
                             when (outcome) {
