@@ -36,21 +36,4 @@ data class Food(
         const val LOCAL = "Local Dish"
         const val OTHER = "Other Dish"
     }
-
-    companion object {
-        @JvmStatic
-        @BindingAdapter("foodImage")
-        fun loadFoodImage(view: ImageView, url: String?) {
-            GlideApp.with(view.context)
-                .asBitmap()
-                .load(url)
-                .override(Target.SIZE_ORIGINAL)
-                .placeholder(R.color.content_placeholder)
-                .error(R.color.content_placeholder)
-                .transition(withCrossFade())
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .into(view)
-        }
-
-    }
 }
