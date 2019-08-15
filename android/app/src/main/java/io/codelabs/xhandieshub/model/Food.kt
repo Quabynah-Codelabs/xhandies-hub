@@ -38,7 +38,6 @@ data class Food(
     }
 
     companion object {
-
         @JvmStatic
         @BindingAdapter("foodImage")
         fun loadFoodImage(view: ImageView, url: String?) {
