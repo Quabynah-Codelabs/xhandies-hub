@@ -5,8 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
+import android.widget.EditText
 import io.codelabs.sdk.util.debugLog
 import io.codelabs.xhandieshub.core.base.BaseActivity
+import io.codelabs.xhandieshub.model.Food
 
 /**
  * For debugging
@@ -30,6 +32,27 @@ fun BaseActivity.intentTo(target: Class<out BaseActivity>, bundle: Bundle) {
     startActivity(Intent(this, target).apply {
         putExtras(bundle)
     })
+}
+
+val EditText.hasValue: Boolean get() = this.text.toString().isNotEmpty()
+
+val EditText.value: String get() = this.text.toString()
+
+fun MutableList<Food>.addIfDoesNotExist(otherList: MutableList<Food>) {
+    if (otherList.isEmpty()) return
+    otherList.forEach { item ->
+        debugger("ID: ${item.key}")
+        var add = true
+        for (food in this) {
+            add = food.key != item.key
+        }
+        if (add) this.add(item)
+    }
+}
+
+fun MutableList<Food>.clearAndAdd(otherList: MutableList<Food>) {
+    this.clear()
+    this.addAll(otherList)
 }
 
 /**

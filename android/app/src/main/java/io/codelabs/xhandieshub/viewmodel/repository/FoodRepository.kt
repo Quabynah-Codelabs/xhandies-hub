@@ -21,19 +21,18 @@ class FoodRepository private constructor(
     private val cartDao: CartDao,
     private val prefs: AppPreferences
 ) {
-
     private val foodQuery
-        get() = db.collection(Utils.FOODS_COLLECTION).orderBy(
-            "key",
-            Query.Direction.DESCENDING
-        ).limit(50L)
+        get() = db.collection(Utils.FOODS_COLLECTION)
+            .orderBy("key", Query.Direction.DESCENDING).limit(50L)
 
     /**
      * Get all foods from the database
      */
     fun getAllFoods(): QueryLiveData<Food> = QueryLiveData(foodQuery, foodDao, Food::class.java)
 
-    fun getAllLocalFoods(): LiveData<MutableList<Food>> = foodDao.getAllFoods()
+    fun getAllLocalFoods(): LiveData<MutableList<Food>> = foodDao.getAllFoods().apply {
+        getAllFoods()
+    }
 
     /**
      * Get a single [Food] item by [key]

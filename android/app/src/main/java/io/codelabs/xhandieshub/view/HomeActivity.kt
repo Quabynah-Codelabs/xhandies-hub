@@ -31,7 +31,6 @@ class HomeActivity : BaseActivity() {
     private val userViewModel by viewModel<UserViewModel>()
     private val foodViewModel by viewModel<FoodViewModel>()
     private lateinit var foodAdapter: FoodListAdapter
-
     private var hasCartItems: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,20 +66,16 @@ class HomeActivity : BaseActivity() {
                 }
             }
         })
-
-        foodViewModel.cart.observe(this, Observer { carts ->
-            hasCartItems = carts != null && carts.isNotEmpty()
-            invalidateOptionsMenu()
-        })
     }
 
     private fun setupListOfFoods() {
-        food_list.setHasFixedSize(false)
-        food_list.itemAnimator = DefaultItemAnimator()
         foodAdapter = FoodListAdapter(this)
         food_list.adapter = foodAdapter
+
+        food_list.setHasFixedSize(false)
+        food_list.itemAnimator = DefaultItemAnimator()
         food_list.layoutManager =  GridLayoutManager(this, 2).apply {
-            spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            this.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
                     return if (foodAdapter.isEmpty()) 2 else 1
                 }
@@ -88,9 +83,15 @@ class HomeActivity : BaseActivity() {
         }
 
         // Kick-off initial load
-        foodViewModel.getAllFoods().observe(this, Observer { foods ->
+        foodViewModel.getAllLocalFoods().observe(this@HomeActivity, Observer { foods ->
             debugger("All foods from database: ${foods?.size}")
             if (foods != null) foodAdapter.addFoods(foods)
+        })
+
+        // Cart
+        foodViewModel.cart.observe(this@HomeActivity, Observer { carts ->
+            hasCartItems = carts?.isNotEmpty() ?: false
+            invalidateOptionsMenu()
         })
     }
 
@@ -117,6 +118,7 @@ class HomeActivity : BaseActivity() {
             R.id.item_track -> // Navigate to item tracking
                 intentTo(TrackingActivity::class.java)
             R.id.item_logout -> MaterialAlertDialogBuilder(this@HomeActivity).apply {
+                setTitle("Confirm logout")
                 setMessage("Do you wish to sign out?")
                 setPositiveButton("Yes") { dialogInterface, _ ->
                     dialogInterface.dismiss()
@@ -125,7 +127,6 @@ class HomeActivity : BaseActivity() {
                 setNegativeButton("No") { dialogInterface, _ ->
                     dialogInterface.dismiss()
                 }
-
                 show()
             }
         }

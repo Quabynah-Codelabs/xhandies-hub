@@ -1,15 +1,8 @@
 package io.codelabs.xhandieshub.model
 
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions.withCrossFade
-import com.bumptech.glide.request.target.Target
-import io.codelabs.sdk.glide.GlideApp
-import io.codelabs.xhandieshub.R
 import io.codelabs.xhandieshub.core.Utils
 import kotlinx.android.parcel.Parcelize
 

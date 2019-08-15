@@ -6,12 +6,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import io.codelabs.xhandieshub.R
 import io.codelabs.xhandieshub.core.base.BaseActivity
+import io.codelabs.xhandieshub.core.clearAndAdd
 import io.codelabs.xhandieshub.core.intentTo
 import io.codelabs.xhandieshub.model.Food
 import io.codelabs.xhandieshub.view.FoodDetailsActivity
 
 class FoodListAdapter(private val context: BaseActivity) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val datasource = mutableListOf<Food>()
 
     override fun getItemViewType(position: Int): Int =
         if (datasource.isEmpty()) R.layout.item_empty_food else R.layout.item_food
@@ -57,25 +59,11 @@ class FoodListAdapter(private val context: BaseActivity) :
         }
     }
 
-    fun addFoods(foods: MutableList<Food?>) {
-        if (foods.isEmpty()) return
-        foods.forEach { dish ->
-            var add = true
-
-            for (i in 0 until datasource.size) {
-                add = datasource[i]?.key != dish?.key
-            }
-
-            if (add) {
-                datasource.add(dish)
-                notifyItemRangeChanged(0, foods.size)
-            }
-        }
+    fun addFoods(foods: MutableList<Food>) {
+//        datasource.addIfDoesNotExist(foods)
+        datasource.clearAndAdd(foods)
+        notifyDataSetChanged()
     }
 
     fun isEmpty(): Boolean = datasource.isEmpty()
-
-    private val datasource = mutableListOf<Food?>()
-
-
 }

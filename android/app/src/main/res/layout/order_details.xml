@@ -15,32 +15,44 @@
             android:id="@+id/buyer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:icon="@drawable/twotone_perm_identity_24px"
+            android:background="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            android:background="?selectableItemBackground"
+            app:icon="@drawable/twotone_perm_identity_24px"
             app:title="Buyer" />
 
         <io.codelabs.sdk.widget.PreferenceView
             android:id="@+id/deliver_to"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:icon="@drawable/twotone_location_on_24px"
+            android:background="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            android:background="?selectableItemBackground"
+            android:onClick="updateAddress"
+            app:icon="@drawable/twotone_location_on_24px"
             app:title="@string/deliver_to" />
+
+        <io.codelabs.sdk.widget.PreferenceView
+            android:id="@+id/delivery_van_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            app:icon="@drawable/ic_twotone_departure_board_24px"
+            android:onClick="showVanDetails"
+            app:title="@string/van_details" />
 
         <io.codelabs.sdk.widget.PreferenceView
             android:id="@+id/payment_provider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:summary="@string/momo"
+            android:background="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
             android:onClick="choosePayment"
-            android:background="?selectableItemBackground"
             app:icon="@drawable/twotone_account_balance_24px"
+            app:summary="@string/momo"
             app:title="@string/confirm_trans_hint" />
 
     </io.codelabs.widget.ForegroundLinearLayout>

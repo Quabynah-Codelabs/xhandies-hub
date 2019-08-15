@@ -12,6 +12,24 @@
 
         <item name="textInputStyle">@style/XhandiesTheme.InputField</item>
         <item name="android:fontFamily">@font/exo_2</item>
+
+        <item name="materialAlertDialogTheme">@style/XhandiesTheme.MaterialAlertDialog</item>
+    </style>
+
+    <style name="XhandiesTheme.MaterialAlertDialog" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog.Centered">
+        <item name="materialAlertDialogTitleTextStyle">@style/TextAppearance.MyTheme.DialogTitle
+        </item>
+        <item name="materialAlertDialogBodyTextStyle">@style/TextAppearance.MyTheme.DialogBody
+        </item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.DialogTitle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:fontFamily">@font/exo_2</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.DialogBody" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:fontFamily">@font/exo_2</item>
     </style>
 
     <style name="XhandiesTheme.FullScreen">
