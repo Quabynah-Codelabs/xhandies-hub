@@ -60,7 +60,11 @@ class FoodListAdapter(private val context: BaseActivity) :
     fun addFoods(foods: MutableList<Food?>) {
         if (foods.isEmpty()) return
         foods.forEach { dish ->
-            val add = !datasource.contains(dish)
+            var add = true
+
+            for (i in 0 until datasource.size) {
+                add = datasource[i]?.key != dish?.key
+            }
 
             if (add) {
                 datasource.add(dish)

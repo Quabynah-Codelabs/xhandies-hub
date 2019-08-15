@@ -20,7 +20,7 @@ interface PaymentService {
     /**
      * Response from server
      */
-    data class ApiResponse(val message: String?, val response: Any, val error: Boolean = false)
+    data class ApiResponse(val message: String?, val result: Any, val error: Boolean = false)
 
     @POST("/payment/checkout")
     fun makePaymentAsync(@Body request: PaymentRequest): Deferred<Response<ApiResponse>>

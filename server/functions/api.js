@@ -13,14 +13,14 @@ app.post("/checkout", (req, res) => {
 
     // Return response
     return res.status(201).json({
-      message: "payment was successful",
-      result: {},
+      message: "Payment was successful",
+      result: body,
       error: false
     });
   } else {
     return res.status(401).json({
       message: "Cannot perform this function",
-      result: null,
+      result: body,
       error: true
     });
   }
