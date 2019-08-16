@@ -53,7 +53,7 @@ class OrderActivity : BaseActivity() {
             "Ishmael Nurudeen",
             "Solomon Quayenor"
         )
-        vanModel = VanModel(vanDrivers[Random.nextInt(4)], vanNumbers[Random.nextInt(4)])
+        vanModel = VanModel(vanDrivers[Random.nextInt(vanDrivers.size)], vanNumbers[Random.nextInt(vanNumbers.size)])
         delivery_van_details.summary = String.format("%s (Tap for more)", vanModel.number)
 
         if (intent.hasExtra(EXTRA_CART)) {
