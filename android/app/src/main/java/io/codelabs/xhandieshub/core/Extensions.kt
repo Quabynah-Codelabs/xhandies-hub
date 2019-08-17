@@ -50,7 +50,7 @@ fun MutableList<Food>.addIfDoesNotExist(otherList: MutableList<Food>) {
     }
 }
 
-fun MutableList<Food>.clearAndAdd(otherList: MutableList<Food>) {
+fun MutableList<Food?>.clearAndAdd(otherList: MutableList<Food?>) {
     this.clear()
     this.addAll(otherList)
 }

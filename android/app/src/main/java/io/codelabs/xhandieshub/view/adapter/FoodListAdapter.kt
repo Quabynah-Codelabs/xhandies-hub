@@ -13,7 +13,7 @@ import io.codelabs.xhandieshub.view.FoodDetailsActivity
 
 class FoodListAdapter(private val context: BaseActivity) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val datasource = mutableListOf<Food>()
+    private val datasource = mutableListOf<Food?>()
 
     override fun getItemViewType(position: Int): Int =
         if (datasource.isEmpty()) R.layout.item_empty_food else R.layout.item_food
@@ -59,7 +59,7 @@ class FoodListAdapter(private val context: BaseActivity) :
         }
     }
 
-    fun addFoods(foods: MutableList<Food>) {
+    fun addFoods(foods: MutableList<Food?>) {
 //        datasource.addIfDoesNotExist(foods)
         datasource.clearAndAdd(foods)
         notifyDataSetChanged()

@@ -30,9 +30,7 @@ class FoodRepository private constructor(
      */
     fun getAllFoods(): QueryLiveData<Food> = QueryLiveData(foodQuery, foodDao, Food::class.java)
 
-    fun getAllLocalFoods(): LiveData<MutableList<Food>> = foodDao.getAllFoods().apply {
-        getAllFoods()
-    }
+    fun getAllLocalFoods(): LiveData<MutableList<Food>> = foodDao.getAllFoods()
 
     /**
      * Get a single [Food] item by [key]

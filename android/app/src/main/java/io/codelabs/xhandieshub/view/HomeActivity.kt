@@ -83,7 +83,7 @@ class HomeActivity : BaseActivity() {
         }
 
         // Kick-off initial load
-        foodViewModel.getAllLocalFoods().observe(this@HomeActivity, Observer { foods ->
+        foodViewModel.getAllFoods().observe(this@HomeActivity, Observer { foods ->
             debugger("All foods from database: ${foods?.size}")
             if (foods != null) foodAdapter.addFoods(foods)
         })

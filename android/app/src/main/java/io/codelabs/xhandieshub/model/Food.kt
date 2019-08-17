@@ -14,7 +14,7 @@ data class Food(
     var name: String,
     var desc: String? = null,
     var imageUrl: String? = null,
-    var category: String = FoodCategory.CONTINENTAL,
+    var category: String = FoodCategory.LOCAL,
     var price: Double = 1.00,
     var quantity: Int = 100,
     var restaurant: String? = Utils.DEFAULT_RESTAURANT
